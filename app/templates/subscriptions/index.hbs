@@ -27,17 +27,19 @@
               {{subscription.location}}
             </td>
             <td>
-              {{moment-format subscription.start 'YYYY-MM-DD'}}
+              {{subscription.start}}
             </td>
             <td>
-              {{moment-format subscription.end 'YYYY-MM-DD'}}
+              {{subscription.end}}
             </td>
             <td>
               {{subscription.units}}
             </td>
             <td>
-              {{!-- <%= link_to 'Edit', edit_subscription_path(subscription) %>
-              |
+              {{#link-to 'subscriptions.edit' subscription}}
+                Edit
+              {{/link-to}}
+              {{!-- |
               <%= link_to 'Delete', subscription_path(subscription), method: 'delete' %> --}}
             </td>
           </tr>

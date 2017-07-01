@@ -1,5 +1,6 @@
 import { test } from 'qunit';
 import moduleForAcceptance from 'forecast-mailer/tests/helpers/module-for-acceptance';
+import { select } from 'forecast-mailer/tests/helpers/x-select';
 
 moduleForAcceptance('Acceptance | Subscriptions');
 
@@ -47,5 +48,51 @@ test('adding a new subscription', function(assert) {
     assert.ok(savedToServer, 'new subscription saved to server');
     assert.equal(currentURL(), '/subscriptions', 'redirects back to subscription listing');
     assert.equal(find('.subscription').length, 2, 'displays the newly-added subscription');
+  });
+});
+
+test('editing a subscription', function(assert) {
+  let subscription = server.create('subscription', {
+    email: 'john.doe@example.com',
+    location: 'Anytown, USA',
+    start: '2017-06-01',
+    end: '2017-07-01',
+    units: 'us'
+  });
+
+  let savedToServer = false;
+  server.patch('/subscriptions/:id', function({ subscriptions }, request) {
+    savedToServer = true;
+    let subscription = subscriptions.find(request.params.id);
+    subscription.update(this.normalizedRequestAttrs());
+    return this.serialize(subscription);
+  });
+
+  visit('/subscriptions');
+  click('a:contains(Edit)');
+  andThen(() => {
+    assert.equal(currentURL(), `/subscriptions/${subscription.id}`, 'Edit link goes to edit form for subscription');
+    assert.equal(find('input[name=email]').val(), 'john.doe@example.com', 'email field contains current initial value');
+    assert.equal(find('input[name=location]').val(), 'Anytown, USA', 'location field contains correct initial value');
+    assert.equal(find('input[name=start-date]').val(), '2017-06-01', 'start date field contains correct initial value');
+    assert.equal(find('input[name=end-date]').val(), '2017-07-01', 'end date field contains correct initial value');
+    assert.equal(find('select[name=units]').val(), 'us', 'unit field displays correct initial value');
+  });
+
+  fillIn('input[name=email]', 'jane.doe@example.org');
+  fillIn('input[name=location]', 'Nowheresville');
+  fillIn('input[name=start-date]', '2017-07-01');
+  fillIn('input[name=end-date]', '2017-08-01');
+  andThen(() => select('select[name=units]', 'si'));
+  click('input[type=submit]');
+
+  andThen(() => {
+    assert.ok(savedToServer, 'changes saved back to server');
+    assert.equal(currentURL(), '/subscriptions', 'redirects back to subscription listing');
+    assert.equal(find('.subscription td:eq(0)').text().trim(), 'jane.doe@example.org', 'email address was updated');
+    assert.equal(find('.subscription td:eq(1)').text().trim(), 'Nowheresville', 'location was updated');
+    assert.equal(find('.subscription td:eq(2)').text().trim(), '2017-07-01', 'start date was updated');
+    assert.equal(find('.subscription td:eq(3)').text().trim(), '2017-08-01', 'end date was updated');
+    assert.equal(find('.subscription td:eq(4)').text().trim(), 'si', 'units were updated');
   });
 });

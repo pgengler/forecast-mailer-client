@@ -4,8 +4,8 @@ const { attr } = DS;
 
 export default DS.Model.extend({
   email: attr('string'),
-  end: attr('moment-date'),
+  end: attr('string'),
   location: attr('string'),
-  start: attr('moment-date'),
+  start: attr('string'),
   units: attr('string')
 });
