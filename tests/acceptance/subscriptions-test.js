@@ -50,6 +50,7 @@ test('adding a new subscription', function(assert) {
     assert.ok(savedToServer, 'new subscription saved to server');
     assert.equal(currentURL(), '/subscriptions', 'redirects back to subscription listing');
     assert.equal(find('.subscription').length, 2, 'displays the newly-added subscription');
+    assert.flashSuccess('Subscription created');
   });
 });
 
@@ -91,6 +92,7 @@ test('editing a subscription', function(assert) {
   andThen(() => {
     assert.ok(savedToServer, 'changes saved back to server');
     assert.equal(currentURL(), '/subscriptions', 'redirects back to subscription listing');
+    assert.flashSuccess('Subscription updated');
     assert.equal(find('.subscription td:eq(0)').text().trim(), 'jane.doe@example.org', 'email address was updated');
     assert.equal(find('.subscription td:eq(1)').text().trim(), 'Nowheresville', 'location was updated');
     assert.equal(find('.subscription td:eq(2)').text().trim(), '2017-07-01', 'start date was updated');
@@ -119,6 +121,7 @@ test('can remove a subscription', function(assert) {
   andThen(() => {
     assert.ok(deletedFromServer, 'made request to server to delete');
     assert.equal(currentURL(), '/subscriptions', 'redirects back to subscription listing');
+    assert.flashSuccess('Subscription deleted');
     assert.equal(find('.subscription').length, 11, 'deleted subscription is not displayed');
   });
 });

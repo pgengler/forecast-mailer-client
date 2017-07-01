@@ -9,6 +9,7 @@ export default Ember.Controller.extend({
   actions: {
     saveSubscription(subscription) {
       subscription.save()
+      .then(() => this.get('flashMessages').success('Subscription created'))
       .then(() => this.transitionToRoute('subscriptions.index'));
     }
   }

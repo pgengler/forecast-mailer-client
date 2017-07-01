@@ -2168,6 +2168,14 @@ ember-cli-eslint@^3.0.0:
     rsvp "^3.2.1"
     walk-sync "^0.3.0"
 
+ember-cli-flash@^1.4.2:
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/ember-cli-flash/-/ember-cli-flash-1.4.2.tgz#db5c5b481a078cae95b3336ac08a46afd2517fd1"
+  dependencies:
+    ember-cli-babel "^5.1.6"
+    ember-cli-htmlbars "^1.0.3"
+    ember-runtime-enumerable-includes-polyfill "^1.0.1"
+
 ember-cli-foundation-6-sass@^0.0.23:
   version "0.0.23"
   resolved "https://registry.yarnpkg.com/ember-cli-foundation-6-sass/-/ember-cli-foundation-6-sass-0.0.23.tgz#a95577f785d9ba477e7d2ac30bd42cecfe286fad"
@@ -2209,7 +2217,7 @@ ember-cli-htmlbars-inline-precompile@^0.4.0, ember-cli-htmlbars-inline-precompil
     hash-for-dep "^1.0.2"
     silent-error "^1.1.0"
 
-ember-cli-htmlbars@^1.0.0, ember-cli-htmlbars@^1.0.2, ember-cli-htmlbars@^1.1.1:
+ember-cli-htmlbars@^1.0.0, ember-cli-htmlbars@^1.0.2, ember-cli-htmlbars@^1.0.3, ember-cli-htmlbars@^1.1.1:
   version "1.3.3"
   resolved "https://registry.yarnpkg.com/ember-cli-htmlbars/-/ember-cli-htmlbars-1.3.3.tgz#06815262c1577736235bd42ce99db559ce5ebfd1"
   dependencies:
@@ -2586,6 +2594,13 @@ ember-router-generator@^1.0.0:
   resolved "https://registry.yarnpkg.com/ember-router-generator/-/ember-router-generator-1.2.3.tgz#8ed2ca86ff323363120fc14278191e9e8f1315ee"
   dependencies:
     recast "^0.11.3"
+
+ember-runtime-enumerable-includes-polyfill@^1.0.1:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/ember-runtime-enumerable-includes-polyfill/-/ember-runtime-enumerable-includes-polyfill-1.0.4.tgz#16a7612e347a2edf07da8b2f2f09dbfee70deba0"
+  dependencies:
+    ember-cli-babel "^5.1.6"
+    ember-cli-version-checker "^1.1.6"
 
 ember-runtime-enumerable-includes-polyfill@^2.0.0:
   version "2.0.0"

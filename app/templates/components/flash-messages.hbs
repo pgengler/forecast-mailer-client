@@ -1,0 +1,11 @@
+{{#each flashMessages.queue as |item|}}
+  {{#flash-message flash=item as |component flash|}}
+    <div class="grid-x">
+      <div class="large-6 cell">
+        <div data-alert class="callout {{flash.type}}">
+          {{flash.message}}
+        </div>
+      </div>
+    </div>
+  {{/flash-message}}
+{{/each}}
