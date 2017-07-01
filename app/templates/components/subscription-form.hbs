@@ -1,0 +1,55 @@
+<div class="grid-x">
+  <div class="cell">
+    <label>
+      Location to send the forecast for:
+      {{input type="text" name="location" id="location" value=location}}
+    </label>
+  </div>
+</div>
+
+<div class="grid-x">
+  <div class="cell">
+    <label>
+      Email to receive forecast:
+      {{input type="text" name="email" id="email" value=email}}
+    </label>
+  </div>
+</div>
+
+<div class="grid-x">
+  <div class="cell">
+    <label>
+      Units:
+      {{#x-select
+          action=(action (mut units))
+          value=units
+        as |xs|
+      }}
+        {{#xs.option value="si"}}SI{{/xs.option}}
+        {{#xs.option value="us"}}US{{/xs.option}}
+        {{#xs.option value="auto"}}Automatic{{/xs.option}}
+      {{/x-select}}
+    </label>
+  </div>
+</div>
+
+<div class="grid-x grid-margin-x">
+  <div class="large-6 cell">
+    <label>
+      (Optional) Date to start receiving emailed forecasts:
+      {{input type="text" name="start-date" id="start-date" value=startDate}}
+    </label>
+  </div>
+  <div class="large-6 cell">
+    <label>
+      (Optional) Date to stop receiving emailed forecasts:
+      {{input type="text" name="end-date" id="end-date" value=endDate}}
+    </label>
+  </div>
+</div>
+
+<div class="grid-x">
+  <div class="cell">
+    <input type="submit" value="Save">
+  </div>
+</div>
