@@ -1,0 +1,54 @@
+<div class="row">
+  <div class="large-12 columns">
+    <h1>Subscriptions</h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-12 columns">
+    <table>
+      <thead>
+        <tr>
+          <th>Sent to</th>
+          <th>Location</th>
+          <th>Start</th>
+          <th>End</th>
+          <th>Units</th>
+          <th>&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each model as |subscription|}}
+          <tr class="subscription">
+            <td>
+              {{subscription.email}}
+            </td>
+            <td>
+              {{subscription.location}}
+            </td>
+            <td>
+              {{moment-format subscription.start 'YYYY-MM-DD'}}
+            </td>
+            <td>
+              {{moment-format subscription.end 'YYYY-MM-DD'}}
+            </td>
+            <td>
+              {{subscription.units}}
+            </td>
+            <td>
+              {{!-- <%= link_to 'Edit', edit_subscription_path(subscription) %>
+              |
+              <%= link_to 'Delete', subscription_path(subscription), method: 'delete' %> --}}
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-12 columns">
+    {{!-- <%= link_to 'Add new subscription', new_subscription_path %> --}}
+  </div>
+</div>
