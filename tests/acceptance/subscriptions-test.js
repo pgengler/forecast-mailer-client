@@ -4,6 +4,13 @@ import { select } from 'forecast-mailer/tests/helpers/x-select';
 
 moduleForAcceptance('Acceptance | Subscriptions | Index');
 
+test('/ redirects to /subscriptions', function(assert) {
+  visit('/');
+  andThen(() => {
+    assert.equal(currentURL(), '/subscriptions', '/ redirected to /subscriptions');
+  });
+});
+
 test('it lists all subscriptions', function(assert) {
   server.createList('subscription', 12);
 
