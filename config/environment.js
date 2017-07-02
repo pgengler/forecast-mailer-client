@@ -1,9 +1,9 @@
 /* eslint-env node */
 
 module.exports = function(environment) {
-  var ENV = {
+  let ENV = {
+    environment,
     modulePrefix: 'forecast-mailer',
-    environment: environment,
     rootURL: '/',
     locationType: 'auto',
     EmberENV: {
