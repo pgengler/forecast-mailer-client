@@ -1,19 +1,20 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { alias } from '@ember/object/computed';
 
-const { computed } = Ember;
-
-export default Ember.Component.extend({
+export default Component.extend({
   tagName: 'form',
 
-  email: computed.alias('subscription.email'),
-  end: computed.alias('subscription.end'),
-  location: computed.alias('subscription.location'),
-  start: computed.alias('subscription.start'),
-  units: computed.alias('subscription.units'),
+  'form-submitted': (/* subscription */) => { /* noop */ },
+
+  email: alias('subscription.email'),
+  end: alias('subscription.end'),
+  location: alias('subscription.location'),
+  start: alias('subscription.start'),
+  units: alias('subscription.units'),
 
   submit(e) {
-    this.sendAction('form-submitted', this.get('subscription'));
     e.preventDefault();
+    this.get('form-submitted')(this.get('subscription'));
     return false;
   }
 });

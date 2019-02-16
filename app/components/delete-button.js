@@ -1,11 +1,13 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
   tagName: '',
+
+  'on-click': () => { /* noop */ },
 
   actions: {
     clicked() {
-      this.sendAction('on-click');
+      this.get('on-click')();
     }
   }
 });

@@ -1,11 +1,6 @@
-import Ember from 'ember';
-import Changeset from 'ember-changeset';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
-  subscriptionChangeset: Ember.computed('model', function() {
-    return new Changeset(this.get('model'));
-  }),
-
+export default Controller.extend({
   actions: {
     deleteSubscription() {
       this.get('model').destroyRecord()

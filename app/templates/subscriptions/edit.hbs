@@ -5,7 +5,7 @@
 </div>
 
 {{subscription-form
-  secondaryButton=(component 'delete-button' on-click=(action 'deleteSubscription'))
-  subscription=subscriptionChangeset
-  form-submitted=(action 'saveSubscription')
+  secondaryButton=(component "delete-button" on-click=(action "deleteSubscription"))
+  subscription=model
+  form-submitted=(action "saveSubscription")
 }}

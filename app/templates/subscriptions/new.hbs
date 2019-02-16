@@ -5,7 +5,6 @@
 </div>
 
 {{subscription-form
-  subscription=subscriptionChangeset
-
-  form-submitted=(action 'saveSubscription')
+  subscription=model
+  form-submitted=(action "saveSubscription")
 }}

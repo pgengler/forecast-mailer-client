@@ -1,26 +1,34 @@
-import { moduleForComponent, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { click, render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
+import EmberObject from '@ember/object';
 
-moduleForComponent('delete-button', 'Integration | Component | delete button', {
-  integration: true
-});
+module('Integration | Component | delete button', function(hooks) {
+  setupRenderingTest(hooks);
 
-test('it has the right CSS classes', function(assert) {
-  this.render(hbs`{{delete-button}}`);
+  test('it has the right CSS classes', async function(assert) {
+    await render(hbs`{{delete-button}}`);
 
-  assert.ok(this.$('button').hasClass('button'), 'has "button" class');
-  assert.ok(this.$('button').hasClass('alert'), 'has "alert" class');
-});
-
-test('it sends an action when clicked', function(assert) {
-  assert.expect(1);
-  this.on('deleteButtonClicked', function() {
-    assert.ok(true, 'action was triggered when button was clicked');
+    assert.dom('button').hasClass('button', 'has "button" class');
+    assert.dom('button').hasClass('alert', 'has "alert" class');
   });
-  this.render(hbs`
-    {{delete-button
-      on-click=(action 'deleteButtonClicked')
-    }}
-  `);
-  this.$('button').click();
+
+  test('it sends an action when clicked', async function(assert) {
+    let clickActionTriggered = false;
+    this.setProperties({
+      deleteButtonClicked: () => clickActionTriggered = true,
+      subscription: EmberObject.create()
+    });
+
+    await render(hbs`
+      {{delete-button
+        on-click=deleteButtonClicked
+        subscription=subscription
+      }}
+    `);
+    await click('button');
+
+    assert.ok(clickActionTriggered, 'action was triggered when button was clicked');
+  });
 });
