@@ -1,0 +1,15 @@
+<thead>
+  <tr>
+    <th>Sent to</th>
+    <th>Location</th>
+    <th>Start</th>
+    <th>End</th>
+    <th>Units</th>
+    <th>&nbsp;</th>
+  </tr>
+</thead>
+<tbody>
+  {{#each @subscriptions as |subscription|}}
+    <SubscriptionRow @subscription={{subscription}} />
+  {{/each}}
+</tbody>

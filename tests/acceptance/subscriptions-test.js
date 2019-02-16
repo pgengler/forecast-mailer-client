@@ -14,24 +14,24 @@ module('Acceptance | Subscriptions | Index', function(hooks) {
     assert.equal(currentURL(), '/subscriptions', '/ redirected to /subscriptions');
   });
 
+  test('it lists current subscriptions, past subscriptions, and future subscriptions separately', async function(assert) {
+    server.createList('subscription', 5, 'current');
+    server.createList('subscription', 3, 'future');
+    server.createList('subscription', 11, 'past');
+
+    await visit('/subscriptions');
+
+    assert.dom('[data-test-subscriptions-type=current] .subscription').exists({ count: 5 });
+    assert.dom('[data-test-subscriptions-type=future] .subscription').exists({ count: 3 });
+    assert.dom('[data-test-subscriptions-type=past] .subscription').exists({ count: 11 });
+  });
+
   test('it lists all subscriptions', async function(assert) {
     server.createList('subscription', 12);
 
     await visit('/subscriptions');
 
     assert.dom('.subscription').exists({ count: 12 }, 'lists all subscriptions');
-  });
-
-  test('dates are formatted as YYYY-MM-DD', async function(assert) {
-    server.create('subscription', {
-      start: '2017-06-01',
-      end: '2017-07-01'
-    });
-
-    await visit('/subscriptions');
-
-    assert.dom('.subscription td:nth-child(3)').hasText('2017-06-01', 'start date is formatted as YYYY-MM-DD');
-    assert.dom('.subscription td:nth-child(4)').hasText('2017-07-01', 'end date is formated as YYYY-MM-DD');
   });
 });
 

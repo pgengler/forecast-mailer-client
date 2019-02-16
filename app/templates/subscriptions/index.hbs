@@ -8,23 +8,7 @@
 
 <div class="grid-x">
   <div class="cell">
-    <table>
-      <thead>
-        <tr>
-          <th>Sent to</th>
-          <th>Location</th>
-          <th>Start</th>
-          <th>End</th>
-          <th>Units</th>
-          <th>&nbsp;</th>
-        </tr>
-      </thead>
-      <tbody>
-        {{#each model as |subscription|}}
-          <SubscriptionRow @subscription={{subscription}} />
-        {{/each}}
-      </tbody>
-    </table>
+    <SubscriptionTable @subscriptions={{currentSubscriptions}} data-test-subscriptions-type="current" />
   </div>
 </div>
 
@@ -33,5 +17,19 @@
     {{#link-to "subscriptions.new"}}
       Add new subscription
     {{/link-to}}
+  </div>
+</div>
+
+<div class="grid-x">
+  <div class="cell">
+    <h4>Upcoming</h4>
+    <SubscriptionTable @subscriptions={{futureSubscriptions}} data-test-subscriptions-type="future" />
+  </div>
+</div>
+
+<div class="grid-x">
+  <div class="cell">
+    <h4>Past</h4>
+    <SubscriptionTable @subscriptions={{pastSubscriptions}} data-test-subscriptions-type="past" />
   </div>
 </div>
