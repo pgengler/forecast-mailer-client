@@ -21,30 +21,7 @@
       </thead>
       <tbody>
         {{#each model as |subscription|}}
-          <tr class="subscription">
-            <td>
-              {{subscription.email}}
-            </td>
-            <td>
-              {{subscription.location}}
-            </td>
-            <td>
-              {{subscription.start}}
-            </td>
-            <td>
-              {{subscription.end}}
-            </td>
-            <td>
-              {{subscription.units}}
-            </td>
-            <td>
-              {{#link-to "subscriptions.edit" subscription}}
-                Edit
-              {{/link-to}}
-              {{!-- |
-              <%= link_to 'Delete', subscription_path(subscription), method: 'delete' %> --}}
-            </td>
-          </tr>
+          <SubscriptionRow @subscription={{subscription}} />
         {{/each}}
       </tbody>
     </table>

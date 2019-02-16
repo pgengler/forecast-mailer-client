@@ -1,0 +1,22 @@
+<tr class="subscription">
+  <td>
+    {{@subscription.email}}
+  </td>
+  <td>
+    {{@subscription.location}}
+  </td>
+  <td>
+    {{this.formattedStart}}
+  </td>
+  <td>
+    {{this.formattedEnd}}
+  </td>
+  <td>
+    {{@subscription.units}}
+  </td>
+  <td>
+    {{#link-to "subscriptions.edit" @subscription}}
+      Edit
+    {{/link-to}}
+  </td>
+</tr>
