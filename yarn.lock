@@ -5367,12 +5367,6 @@ escodegen@^1.11.0:
   optionalDependencies:
     source-map "~0.6.1"
 
-eslint-plugin-ember-suave@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-ember-suave/-/eslint-plugin-ember-suave-1.0.0.tgz#ea7d232a126562dcd8b1ee3aa2700ac3b626e514"
-  dependencies:
-    requireindex "~1.1.0"
-
 eslint-plugin-ember@^6.2.0:
   version "6.10.1"
   resolved "https://registry.yarnpkg.com/eslint-plugin-ember/-/eslint-plugin-ember-6.10.1.tgz#ca7a5cc28b91a247c31b1686421a66281467f238"
@@ -9907,10 +9901,6 @@ require-main-filename@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/require-main-filename/-/require-main-filename-1.0.1.tgz#97f717b69d48784f5f526a6c5aa8ffdda055a4d1"
   integrity sha1-l/cXtp1IeE9fUmpsWqj/3aBVpNE=
-
-requireindex@~1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/requireindex/-/requireindex-1.1.0.tgz#e5404b81557ef75db6e49c5a72004893fe03e162"
 
 requires-port@1.x.x, requires-port@^1.0.0:
   version "1.0.0"
