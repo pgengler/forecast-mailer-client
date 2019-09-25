@@ -1,10 +1,12 @@
-import { Factory, faker, trait } from 'ember-cli-mirage';
+import { Factory, trait } from 'ember-cli-mirage';
+import faker from 'faker';
 
 export default Factory.extend({
   email: faker.internet.email,
   location: () => `${faker.address.city()}, ${faker.address.stateAbbr()}`,
   start: () => faker.date.recent(),
   end: () => faker.date.future(),
+  units: () => faker.random.arrayElement(['si', 'us', 'auto']),
 
   current: trait({
     start: () => faker.date.recent(),
