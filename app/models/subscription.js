@@ -1,17 +1,16 @@
 import Model, { attr } from '@ember-data/model';
-import { computed } from '@ember/object';
 import moment from 'moment';
 
-export default Model.extend({
-  email: attr('string'),
-  end: attr('moment-date'),
-  location: attr('string'),
-  start: attr('moment-date'),
-  units: attr('string'),
+export default class Subscription extends Model {
+  @attr('string') email;
+  @attr('moment-date') end;
+  @attr('string') location;
+  @attr('moment-date') start;
+  @attr('string') units;
 
-  current: computed('start', 'end', function() {
-    let start = this.get('start');
-    let end = this.get('end');
+  get current() {
+    let start = this.start;
+    let end = this.end;
     let now = moment();
 
     if (!start) {
@@ -37,25 +36,25 @@ export default Model.extend({
     }
 
     return false;
-  }),
+  }
 
-  future: computed('start', function() {
-    let start = this.get('start');
+  get future() {
+    let start = this.start;
     let now = moment();
     if (!start) {
       return false;
     }
 
     return start.isAfter(now, 'day');
-  }),
+  }
 
-  past: computed('end', function() {
-    let end = this.get('end');
+  get past() {
+    let end = this.end;
     let now = moment();
     if (!end) {
       return false;
     }
 
     return end.isSameOrBefore(now, 'day');
-  })
-});
+  }
+}

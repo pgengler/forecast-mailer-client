@@ -4,8 +4,8 @@
   </div>
 </div>
 
-{{subscription-form
-  secondaryButton=(component "delete-button" on-click=(action "deleteSubscription"))
-  subscription=model
-  form-submitted=(action "saveSubscription")
-}}
+<SubscriptionForm
+  @formSubmitted={{action "saveSubscription"}}
+  @secondaryButton={{component "delete-button" onClick=(action "deleteSubscription")}}
+  @subscription={{this.model}}
+/>

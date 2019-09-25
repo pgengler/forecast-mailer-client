@@ -1,10 +1,16 @@
 import Controller from '@ember/controller';
-import { alias, filterBy } from '@ember/object/computed';
+import { alias } from '@ember/object/computed';
 
-export default Controller.extend({
-  subscriptions: alias('model'),
+export default class SubscriptionsIndexController extends Controller {
+  @alias('model') subscriptions;
 
-  currentSubscriptions: filterBy('subscriptions', 'current'),
-  futureSubscriptions: filterBy('subscriptions', 'future'),
-  pastSubscriptions: filterBy('subscriptions', 'past')
-});
+  get currentSubscriptions() {
+    return this.subscriptions.filterBy('current');
+  }
+  get futureSubscriptions() {
+    return this.subscriptions.filterBy('future');
+  }
+  get pastSubscriptions() {
+    return this.subscriptions.filterBy('past');
+  }
+}

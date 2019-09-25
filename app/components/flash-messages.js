@@ -1,6 +1,6 @@
-import Component from '@ember/component';
+import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
 
-export default Component.extend({
-  flashMessages: service()
-});
+export default class FlashMessagesComponent extends Component {
+  @service flashMessages;
+}

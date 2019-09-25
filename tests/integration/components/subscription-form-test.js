@@ -8,18 +8,20 @@ import EmberObject from '@ember/object';
 module('Integration | Component | subscription-form', function(hooks) {
   setupRenderingTest(hooks);
 
-  test('it sends a form-submitted action when form is submitted', async function(assert) {
+  hooks.beforeEach(function() {
+    this.subscription = EmberObject.create();
+  });
+
+  test('it sends a formSubmitted action when form is submitted', async function(assert) {
     let formSubmitActionTriggered = false;
-    this.setProperties({
-      formSubmitted: () => formSubmitActionTriggered = true,
-      subscription: EmberObject.create()
-    });
+
+    this.formSubmitted =() => formSubmitActionTriggered = true;
 
     await render(hbs`
-      {{subscription-form
-        form-submitted=formSubmitted
-        subscription=subscription
-      }}
+      <SubscriptionForm
+        @formSubmitted={{formSubmitted}}
+        @subscription={{subscription}}
+      />
     `);
     await click('input[type=submit]');
 
@@ -27,17 +29,17 @@ module('Integration | Component | subscription-form', function(hooks) {
   });
 
   test('it renders a secondary button, if one is passed', async function(assert) {
-    this.owner.register('component:dummy-component', Component.extend({
-      tagName: 'dummy'
-    }));
+    this.owner.register('component:dummy-component', class extends Component {
+      tagName = 'dummy';
+    });
 
-    this.set('subscription', EmberObject.create());
+    this.subscription = EmberObject.create();
 
     await render(hbs`
-      {{subscription-form
-        secondaryButton=(component "dummy-component")
-        subscription=subscription
-      }}
+      <SubscriptionForm
+        @secondaryButton={{component "dummy-component"}}
+        @subscription={{subscription}}
+      />
     `);
     assert.dom('dummy').exists('secondary button component is rendered');
   });

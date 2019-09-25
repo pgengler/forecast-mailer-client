@@ -1,18 +1,15 @@
-import Component from '@ember/component';
-import { computed } from '@ember/object';
+import Component from '@glimmer/component';
 
 const DATE_FORMAT = 'YYYY-MM-DD';
 
-export default Component.extend({
-  tagName: '',
-
-  formattedEnd: computed('subscription.end', function() {
-    let date = this.get('subscription.end');
+export default class SubscriptionRowComponent extends Component {
+  get formattedEnd() {
+    let date = this.args.subscription.end;
     return date ? date.format(DATE_FORMAT) : '';
-  }),
+  }
 
-  formattedStart: computed('subscription.start', function() {
-    let date = this.get('subscription.start');
+  get formattedStart() {
+    let date = this.args.subscription.start;
     return date ? date.format(DATE_FORMAT) : '';
-  })
-});
+  }
+}

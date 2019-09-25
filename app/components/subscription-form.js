@@ -1,39 +1,41 @@
-import Component from '@ember/component';
-import { computed } from '@ember/object';
+import Component from '@glimmer/component';
+import { action } from '@ember/object';
 import { oneWay } from '@ember/object/computed';
-import { isEmpty } from '@ember/utils';
 import moment from 'moment';
 
 const DATE_FORMAT = 'YYYY-MM-DD';
 
-export default Component.extend({
-  tagName: 'form',
+export default class SubscriptionFormComponent extends Component {
+  @oneWay('args.subscription.email') email;
+  @oneWay('args.subscription.end') _end;
+  @oneWay('args.subscription.location') location;
+  @oneWay('args.subscription.start') _start;
+  @oneWay('args.subscription.units') units;
 
-  'form-submitted': (/* subscription */) => { /* noop */ },
+  get end() {
+    return this._end ? this._end.format(DATE_FORMAT) : '';
+  }
+  set end(value) {
+    this._end = value ? moment(value) : null;
+  }
 
-  email: oneWay('subscription.email'),
-  location: oneWay('subscription.location'),
-  units: oneWay('subscription.units'),
+  get start() {
+    return this._start ? this._start.format(DATE_FORMAT) : '';
+  }
+  set start(value) {
+    this._start = value ? moment(value) : null;
+  }
 
-  end: computed('subscription.end', function() {
-    let date = this.get('subscription.end');
-    return date ? date.format(DATE_FORMAT) : '';
-  }),
-  start: computed('subscription.start', function() {
-    let date = this.get('subscription.start');
-    return date ? date.format(DATE_FORMAT) : '';
-  }),
-
-  submit(e) {
+  @action
+  updateSubscription(e) {
     e.preventDefault();
-    this.get('subscription').setProperties({
+    this.args.subscription.setProperties({
       email: this.email,
-      end: isEmpty(this.end) ? null : moment(this.end),
+      end: this.end,
       location: this.location,
-      start: isEmpty(this.start) ? null : moment(this.start),
+      start: this.start,
       units: this.units,
     });
-    this.get('form-submitted')(this.get('subscription'));
-    return false;
+    this.args.formSubmitted(this.args.subscription);
   }
-});
+}

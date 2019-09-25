@@ -1,7 +1,7 @@
 import Transform from '@ember-data/serializer/transform';
 import moment from 'moment';
 
-export default Transform.extend({
+export default class MomentDateTransform extends Transform {
   serialize(value) {
     const format = 'YYYY-MM-DDTHH:mm:ssZ';
 
@@ -12,7 +12,8 @@ export default Transform.extend({
       return value.utc().format(format);
     }
     return value;
-  },
+  }
+
   deserialize(value) {
     const date = moment(value);
     if (date.isValid()) {
@@ -20,4 +21,4 @@ export default Transform.extend({
     }
     return null;
   }
-});
+}

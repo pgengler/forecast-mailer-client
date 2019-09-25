@@ -1,13 +1,5 @@
-import Component from '@ember/component';
+import Component from '@glimmer/component';
 
-export default Component.extend({
-  tagName: '',
+export default class DeleteButtonComponent extends Component {
 
-  'on-click': () => { /* noop */ },
-
-  actions: {
-    clicked() {
-      this.get('on-click')();
-    }
-  }
-});
+}

@@ -15,8 +15,8 @@
     {{@subscription.units}}
   </td>
   <td>
-    {{#link-to "subscriptions.edit" @subscription}}
+    <LinkTo @route="subscriptions.edit" @model={{@subscription}}>
       Edit
-    {{/link-to}}
+    </LinkTo>
   </td>
 </tr>

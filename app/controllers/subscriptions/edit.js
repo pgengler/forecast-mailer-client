@@ -1,17 +1,18 @@
 import Controller from '@ember/controller';
+import { action } from '@ember/object';
 
-export default Controller.extend({
-  actions: {
-    deleteSubscription() {
-      this.get('model').destroyRecord()
-      .then(() => this.get('flashMessages').success('Subscription deleted'))
-      .then(() => this.transitionToRoute('subscriptions.index'));
-    },
-
-    saveSubscription(subscription) {
-      subscription.save()
-      .then(() => this.get('flashMessages').success('Subscription updated', { timeout: 30000 }))
-      .then(() => this.transitionToRoute('subscriptions.index'));
-    }
+export default class SubscriptionsEditController extends Controller {
+  @action
+  deleteSubscription() {
+    this.model.destroyRecord()
+    .then(() => this.flashMessages.success('Subscription deleted'))
+    .then(() => this.transitionToRoute('subscriptions.index'));
   }
-});
+
+  @action
+  saveSubscription(subscription) {
+    subscription.save()
+    .then(() => this.flashMessages.success('Subscription updated', { timeout: 30000 }))
+    .then(() => this.transitionToRoute('subscriptions.index'));
+  }
+}

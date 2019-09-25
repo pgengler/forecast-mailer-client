@@ -4,7 +4,7 @@
   </div>
 </div>
 
-{{subscription-form
-  subscription=model
-  form-submitted=(action "saveSubscription")
-}}
+<SubscriptionForm
+  @subscription={{this.model}}
+  @formSubmitted={{action "saveSubscription"}}
+/>

@@ -1,5 +1,5 @@
-import Component from '@ember/component';
+import Component from '@glimmer/component';
 
-export default Component.extend({
-  tagName: 'table'
-});
+export default class SubscriptionTableComponent extends Component {
+
+}
