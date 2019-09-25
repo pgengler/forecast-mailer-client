@@ -7,23 +7,36 @@ const DATE_FORMAT = 'YYYY-MM-DD';
 
 export default class SubscriptionFormComponent extends Component {
   @oneWay('args.subscription.email') email;
-  @oneWay('args.subscription.end') _end;
   @oneWay('args.subscription.location') location;
-  @oneWay('args.subscription.start') _start;
   @oneWay('args.subscription.units') units;
 
+  _end = null;
+  _start = null;
+
   get end() {
-    return this._end ? this._end.format(DATE_FORMAT) : '';
+    if (this._end !== null) {
+      return this._end;
+    }
+    if (this.args.subscription.end) {
+      return this.args.subscription.end.format(DATE_FORMAT);
+    }
+    return '';
   }
   set end(value) {
-    this._end = value ? moment(value) : null;
+    this._end = value;
   }
 
   get start() {
-    return this._start ? this._start.format(DATE_FORMAT) : '';
+    if (this._start !== null) {
+      return this._start;
+    }
+    if (this.args.subscription.start) {
+      return this.args.subscription.start.format(DATE_FORMAT);
+    }
+    return '';
   }
   set start(value) {
-    this._start = value ? moment(value) : null;
+    this._start = value;
   }
 
   @action
@@ -31,9 +44,9 @@ export default class SubscriptionFormComponent extends Component {
     e.preventDefault();
     this.args.subscription.setProperties({
       email: this.email,
-      end: this.end,
+      end: this.end ? moment(this.end) : null,
       location: this.location,
-      start: this.start,
+      start: this.start ? moment(this.start) : null,
       units: this.units,
     });
     this.args.formSubmitted(this.args.subscription);
