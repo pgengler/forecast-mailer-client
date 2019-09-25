@@ -20,16 +20,16 @@
   <div class="cell">
     <label>
       Units:
-      {{#x-select
-          action=(action (mut units))
-          name="units"
-          value=units
+      <XSelect
+          @onChange={{action (mut this.units)}}
+          @name="units"
+          @value={{units}}
         as |xs|
-      }}
-        {{#xs.option value="si"}}SI{{/xs.option}}
-        {{#xs.option value="us"}}US{{/xs.option}}
-        {{#xs.option value="auto"}}Automatic{{/xs.option}}
-      {{/x-select}}
+      >
+        <xs.option @value="si">SI</xs.option>
+        <xs.option @value="us">US</xs.option>
+        <xs.option @value="auto">Automatic</xs.option>
+      </XSelect>
     </label>
   </div>
 </div>

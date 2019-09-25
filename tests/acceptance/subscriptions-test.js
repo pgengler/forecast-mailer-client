@@ -1,8 +1,30 @@
 import { module, test } from 'qunit';
-import { click, currentURL, fillIn, visit } from '@ember/test-helpers';
+import { click, currentURL, fillIn, find, findAll, triggerEvent, visit } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
-import { select } from 'forecast-mailer/tests/helpers/x-select';
+
+async function select(selector, value) {
+  let select = find(selector);
+  if (!select) {
+    throw new Error(`You called select('${selector}', '${value}'), but no element matched '${selector}'`);
+  }
+
+  let options = findAll(`${selector} option`);
+  let matchingIndex = null;
+  for (let [index, el] of options.entries()) {
+    if (el.value === value) {
+      matchingIndex = index;
+      break;
+    }
+  }
+
+  if (matchingIndex === null) {
+    throw new Error(`You called select('${selector}', '${value}'), but no option with value '${value}' was found.`);
+  }
+  select.selectedIndex = matchingIndex;
+
+  return triggerEvent(select, 'change');
+}
 
 module('Acceptance | Subscriptions | Index', function(hooks) {
   setupApplicationTest(hooks);
@@ -15,9 +37,9 @@ module('Acceptance | Subscriptions | Index', function(hooks) {
   });
 
   test('it lists current subscriptions, past subscriptions, and future subscriptions separately', async function(assert) {
-    server.createList('subscription', 5, 'current');
-    server.createList('subscription', 3, 'future');
-    server.createList('subscription', 11, 'past');
+    this.server.createList('subscription', 5, 'current');
+    this.server.createList('subscription', 3, 'future');
+    this.server.createList('subscription', 11, 'past');
 
     await visit('/subscriptions');
 
@@ -27,7 +49,7 @@ module('Acceptance | Subscriptions | Index', function(hooks) {
   });
 
   test('it lists all subscriptions', async function(assert) {
-    server.createList('subscription', 12);
+    this.server.createList('subscription', 12);
 
     await visit('/subscriptions');
 
@@ -40,10 +62,10 @@ module('Acceptance | Subscriptions | New', function(hooks) {
   setupMirage(hooks);
 
   test('adding a new subscription', async function(assert) {
-    server.create('subscription');
+    this.server.create('subscription');
 
     let savedToServer = false;
-    server.post('/subscriptions', function({ subscriptions }) {
+    this.server.post('/subscriptions', function({ subscriptions }) {
       savedToServer = true;
 
       let newSubscription = subscriptions.create(this.normalizedRequestAttrs());
@@ -69,7 +91,7 @@ module('Acceptance | Subscriptions | Edit', function(hooks) {
   setupMirage(hooks);
 
   test('editing a subscription', async function(assert) {
-    let subscription = server.create('subscription', {
+    let subscription = this.server.create('subscription', {
       email: 'john.doe@example.com',
       location: 'Anytown, USA',
       start: '2017-06-01',
@@ -78,7 +100,7 @@ module('Acceptance | Subscriptions | Edit', function(hooks) {
     });
 
     let savedToServer = false;
-    server.patch('/subscriptions/:id', function({ subscriptions }, request) {
+    this.server.patch('/subscriptions/:id', function({ subscriptions }, request) {
       savedToServer = true;
       let subscription = subscriptions.find(request.params.id);
       subscription.update(this.normalizedRequestAttrs());
@@ -116,11 +138,11 @@ module('Acceptance | Subscriptions | Delete', function(hooks) {
   setupMirage(hooks);
 
   test('can remove a subscription', async function(assert) {
-    server.createList('subscription', 11);
-    let subscription = server.create('subscription');
+    this.server.createList('subscription', 11);
+    let subscription = this.server.create('subscription');
 
     let deletedFromServer = false;
-    server.delete('/subscriptions/:id', function({ subscriptions }, request) {
+    this.server.delete('/subscriptions/:id', function({ subscriptions }, request) {
       deletedFromServer = true;
       let subscription = subscriptions.find(request.params.id);
       subscription.destroy();
