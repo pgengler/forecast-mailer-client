@@ -8,6 +8,9 @@ export default class Subscription extends Model {
   @attr('moment-date') start;
   @attr('string') units;
 
+  @attr('moment-date') createdAt;
+  @attr('moment-date') updatedAt;
+
   get current() {
     let start = this.start;
     let end = this.end;

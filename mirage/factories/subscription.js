@@ -8,6 +8,9 @@ export default Factory.extend({
   end: () => faker.date.future(),
   units: () => faker.random.arrayElement(['si', 'us', 'auto']),
 
+  createdAt: () => faker.date.past(),
+  updatedAt: () => faker.date.past(),
+
   current: trait({
     start: () => faker.date.recent(),
     end: () => faker.date.future(),

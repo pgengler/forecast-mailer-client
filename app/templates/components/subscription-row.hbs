@@ -5,7 +5,7 @@
   <td>
     {{@subscription.location}}
   </td>
-  <td>
+  <td class="{{unless @subscription.start 'indefinite'}}">
     {{this.formattedStart}}
   </td>
   <td>

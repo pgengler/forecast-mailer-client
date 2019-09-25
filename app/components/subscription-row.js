@@ -9,7 +9,7 @@ export default class SubscriptionRowComponent extends Component {
   }
 
   get formattedStart() {
-    let date = this.args.subscription.start;
+    let date = this.args.subscription.start || this.args.subscription.createdAt;
     return date ? date.format(DATE_FORMAT) : '';
   }
 }
