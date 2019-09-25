@@ -56,7 +56,7 @@
     "ember-resolver": "^5.1.3",
     "ember-source": "~3.13.0",
     "ember-template-lint": "^1.5.0",
-    "ember-test-selectors": "^2.0.0",
+    "ember-test-selectors": "^2.1.0",
     "emberx-select": "^4.0.0-beta.2",
     "eslint": "^6.1.0",
     "eslint-plugin-ember": "^7.1.0",
