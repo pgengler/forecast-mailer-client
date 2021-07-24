@@ -33,7 +33,6 @@
     "broccoli-clean-css": "^2.0.1",
     "broccoli-funnel": "^3.0.8",
     "broccoli-merge-trees": "^4.2.0",
-    "ember-ajax": "^5.0.0",
     "ember-auto-import": "^1.11.3",
     "ember-cli": "~3.27.0",
     "ember-cli-app-version": "^5.0.0",
