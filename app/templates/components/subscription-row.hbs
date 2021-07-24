@@ -2,10 +2,10 @@
   <td>
     {{@subscription.email}}
   </td>
-  <td>
+  <td class={{unless @subscription.geocoded "geocoding-failed"}}>
     {{@subscription.location}}
   </td>
-  <td class="{{unless @subscription.start 'indefinite'}}">
+  <td class={{unless @subscription.start "indefinite"}}>
     {{this.formattedStart}}
   </td>
   <td>

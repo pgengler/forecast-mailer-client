@@ -7,6 +7,7 @@ export default class Subscription extends Model {
   @attr('string') location;
   @attr('moment-date') start;
   @attr('string') units;
+  @attr('boolean') geocoded;
 
   @attr('moment-date') createdAt;
   @attr('moment-date') updatedAt;
