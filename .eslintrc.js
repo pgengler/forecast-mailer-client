@@ -11,11 +11,7 @@ module.exports = {
     },
   },
   plugins: ['ember'],
-  extends: [
-    'eslint:recommended',
-    'plugin:ember/recommended',
-    'plugin:prettier/recommended',
-  ],
+  extends: ['eslint:recommended', 'plugin:ember/recommended', 'plugin:prettier/recommended'],
   env: {
     browser: true,
   },
@@ -35,9 +31,7 @@ module.exports = {
         'lib/*/index.js',
         'server/**/*.js',
       ],
-      excludedFiles: [
-        'app/**',
-      ],
+      excludedFiles: ['app/**'],
       parserOptions: {
         sourceType: 'script',
       },

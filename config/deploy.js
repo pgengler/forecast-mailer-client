@@ -1,14 +1,14 @@
 /* eslint-env node */
 
-module.exports = function(deployTarget) {
+module.exports = function (deployTarget) {
   let ENV = {
-    build: {}
+    build: {},
     // include other plugin configuration that applies to all deploy targets here
   };
 
   ENV['with-rsync'] = {
     username: 'forecast-mailer',
-    root: '/srv/apps/forecast-mailer/client'
+    root: '/srv/apps/forecast-mailer/client',
   };
 
   if (deployTarget === 'development') {

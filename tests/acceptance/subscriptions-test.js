@@ -26,17 +26,17 @@ async function select(selector, value) {
   return triggerEvent(select, 'change');
 }
 
-module('Acceptance | Subscriptions | Index', function(hooks) {
+module('Acceptance | Subscriptions | Index', function (hooks) {
   setupApplicationTest(hooks);
   setupMirage(hooks);
 
-  test('/ redirects to /subscriptions', async function(assert) {
+  test('/ redirects to /subscriptions', async function (assert) {
     await visit('/');
 
     assert.equal(currentURL(), '/subscriptions', '/ redirected to /subscriptions');
   });
 
-  test('it lists current subscriptions, past subscriptions, and future subscriptions separately', async function(assert) {
+  test('it lists current subscriptions, past subscriptions, and future subscriptions separately', async function (assert) {
     this.server.createList('subscription', 5, 'current');
     this.server.createList('subscription', 3, 'future');
     this.server.createList('subscription', 11, 'past');
@@ -48,7 +48,7 @@ module('Acceptance | Subscriptions | Index', function(hooks) {
     assert.dom('[data-test-subscriptions-type=past] .subscription').exists({ count: 11 });
   });
 
-  test('it lists all subscriptions', async function(assert) {
+  test('it lists all subscriptions', async function (assert) {
     this.server.createList('subscription', 12);
 
     await visit('/subscriptions');
@@ -57,15 +57,15 @@ module('Acceptance | Subscriptions | Index', function(hooks) {
   });
 });
 
-module('Acceptance | Subscriptions | New', function(hooks) {
+module('Acceptance | Subscriptions | New', function (hooks) {
   setupApplicationTest(hooks);
   setupMirage(hooks);
 
-  test('adding a new subscription', async function(assert) {
+  test('adding a new subscription', async function (assert) {
     this.server.create('subscription');
 
     let savedToServer = false;
-    this.server.post('/subscriptions', function({ subscriptions }) {
+    this.server.post('/subscriptions', function ({ subscriptions }) {
       savedToServer = true;
 
       let newSubscription = subscriptions.create(this.normalizedRequestAttrs());
@@ -77,7 +77,7 @@ module('Acceptance | Subscriptions | New', function(hooks) {
     await fillIn('input[name=location]', 'Springfield, TV');
     await fillIn('input[name=start-date]', '2017-07-01');
     await fillIn('input[name=end-date]', '2017-08-01');
-    await click('input[type=submit]');
+    await click('button[type=submit]');
 
     assert.ok(savedToServer, 'new subscription saved to server');
     assert.equal(currentURL(), '/subscriptions', 'redirects back to subscription listing');
@@ -86,21 +86,21 @@ module('Acceptance | Subscriptions | New', function(hooks) {
   });
 });
 
-module('Acceptance | Subscriptions | Edit', function(hooks) {
+module('Acceptance | Subscriptions | Edit', function (hooks) {
   setupApplicationTest(hooks);
   setupMirage(hooks);
 
-  test('editing a subscription', async function(assert) {
+  test('editing a subscription', async function (assert) {
     let subscription = this.server.create('subscription', {
       email: 'john.doe@example.com',
       location: 'Anytown, USA',
       start: '2017-06-01',
       end: '2017-07-01',
-      units: 'us'
+      units: 'us',
     });
 
     let savedToServer = false;
-    this.server.patch('/subscriptions/:id', function({ subscriptions }, request) {
+    this.server.patch('/subscriptions/:id', function ({ subscriptions }, request) {
       savedToServer = true;
       let subscription = subscriptions.find(request.params.id);
       subscription.update(this.normalizedRequestAttrs());
@@ -120,7 +120,7 @@ module('Acceptance | Subscriptions | Edit', function(hooks) {
     await fillIn('input[name=start-date]', '2017-07-01');
     await fillIn('input[name=end-date]', '2017-08-01');
     await select('select[name=units]', 'si');
-    await click('input[type=submit]');
+    await click('button[type=submit]');
 
     assert.ok(savedToServer, 'changes saved back to server');
     assert.equal(currentURL(), '/subscriptions', 'redirects back to subscription listing');
@@ -133,21 +133,25 @@ module('Acceptance | Subscriptions | Edit', function(hooks) {
   });
 });
 
-module('Acceptance | Subscriptions | Delete', function(hooks) {
+module('Acceptance | Subscriptions | Delete', function (hooks) {
   setupApplicationTest(hooks);
   setupMirage(hooks);
 
-  test('can remove a subscription', async function(assert) {
+  test('can remove a subscription', async function (assert) {
     this.server.createList('subscription', 11);
     let subscription = this.server.create('subscription');
 
     let deletedFromServer = false;
-    this.server.delete('/subscriptions/:id', function({ subscriptions }, request) {
-      deletedFromServer = true;
-      let subscription = subscriptions.find(request.params.id);
-      subscription.destroy();
-      return '';
-    }, 204);
+    this.server.delete(
+      '/subscriptions/:id',
+      function ({ subscriptions }, request) {
+        deletedFromServer = true;
+        let subscription = subscriptions.find(request.params.id);
+        subscription.destroy();
+        return '';
+      },
+      204
+    );
 
     await visit(`/subscriptions/${subscription.id}`);
     await click('button[data-test-delete-button]');

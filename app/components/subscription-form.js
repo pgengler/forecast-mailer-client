@@ -1,17 +1,18 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
-import { oneWay } from '@ember/object/computed';
+import { tracked } from '@glimmer/tracking';
+import { localCopy } from 'tracked-toolbox';
 import moment from 'moment';
 
 const DATE_FORMAT = 'YYYY-MM-DD';
 
 export default class SubscriptionFormComponent extends Component {
-  @oneWay('args.subscription.email') email;
-  @oneWay('args.subscription.location') location;
-  @oneWay('args.subscription.units') units;
+  @localCopy('args.subscription.email') email;
+  @localCopy('args.subscription.location') location;
+  @localCopy('args.subscription.units') units;
 
-  _end = null;
-  _start = null;
+  @tracked _end = null;
+  @tracked _start = null;
 
   get end() {
     if (this._end !== null) {
