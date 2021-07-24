@@ -20,7 +20,7 @@ module('Integration | Component | subscription-row', function (hooks) {
     assert.dom('td:nth-child(3)').doesNotHaveClass('indefinite');
   });
 
-  test('when subscription has no start date, adds "" class and displays createdAt timestamp in YYYY-MM-DD format', async function (assert) {
+  test('when subscription has no start date, adds "indefinite" class and displays createdAt timestamp in YYYY-MM-DD format', async function (assert) {
     this.subscription = {
       createdAt: moment('2019-09-25'),
       start: null,
@@ -53,5 +53,27 @@ module('Integration | Component | subscription-row', function (hooks) {
     `);
 
     assert.dom('td:nth-child(4)').hasText('');
+  });
+
+  test('displays a "failed" indication if geocoding failed', async function (assert) {
+    this.subscription = {
+      geocoded: false,
+    };
+    await render(hbs`
+      <SubscriptionRow @subscription={{this.subscription}} />
+    `);
+
+    assert.dom('td:nth-child(2)').hasClass('geocoding-failed');
+  });
+
+  test('does not display "failed" indication if geocoding succeeded', async function (assert) {
+    this.subscription = {
+      geocoded: true,
+    };
+    await render(hbs`
+      <SubscriptionRow @subscription={{this.subscription}} />
+    `);
+
+    assert.dom('td:nth-child(2)').doesNotHaveClass('geocoding-failed');
   });
 });

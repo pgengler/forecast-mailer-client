@@ -7,6 +7,7 @@ export default Factory.extend({
   start: () => faker.date.recent(),
   end: () => faker.date.future(),
   units: () => faker.random.arrayElement(['si', 'us', 'auto']),
+  geocoded: true,
 
   createdAt: () => faker.date.past(),
   updatedAt: () => faker.date.past(),

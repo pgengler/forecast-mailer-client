@@ -5,3 +5,7 @@
 td.indefinite {
   color: $medium-gray;
 }
+
+td.geocoding-failed {
+  color: $alert-color;
+}
