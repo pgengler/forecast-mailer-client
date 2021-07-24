@@ -5,7 +5,7 @@ const path = require('path');
 const Funnel = require('broccoli-funnel');
 const mergeTrees = require('broccoli-merge-trees');
 
-module.exports = function(defaults) {
+module.exports = function (defaults) {
   let foundationPath = path.resolve(require.resolve('foundation-sites'), '../../..');
   let foundationFunnel = mergeTrees([
     new Funnel(foundationPath, {
