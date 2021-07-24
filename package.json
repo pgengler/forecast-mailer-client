@@ -33,7 +33,7 @@
     "broccoli-clean-css": "^2.0.1",
     "broccoli-funnel": "^3.0.8",
     "broccoli-merge-trees": "^4.2.0",
-    "ember-auto-import": "^1.11.3",
+    "ember-auto-import": "^2.0.2",
     "ember-cli": "~3.27.0",
     "ember-cli-app-version": "^5.0.0",
     "ember-cli-babel": "^7.26.6",
@@ -63,7 +63,6 @@
     "ember-source": "~3.27.2",
     "ember-template-lint": "^3.4.2",
     "ember-test-selectors": "^6.0.0",
-    "emberx-select": "^4.0.0-beta.2",
     "eslint": "^7.27.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-ember": "^10.4.2",
@@ -78,7 +77,8 @@
     "prettier": "^2.3.0",
     "qunit": "^2.15.0",
     "qunit-dom": "^1.6.0",
-    "tracked-toolbox": "^1.2.3"
+    "tracked-toolbox": "^1.2.3",
+    "webpack": "^5.46.0"
   },
   "engines": {
     "node": "10.* || >= 12"

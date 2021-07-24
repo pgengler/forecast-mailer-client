@@ -1,4 +1,4 @@
-<form {{on "submit" this.updateSubscription}}>
+<form {{on "submit" (prevent-default this.updateSubscription)}}>
   <div class="grid-x">
     <div class="cell">
       <label>
@@ -21,16 +21,11 @@
     <div class="cell">
       <label>
         Units:
-        <XSelect
-            @onChange={{fn (mut this.units)}}
-            @name="units"
-            @value={{this.units}}
-          as |xs|
-        >
-          <xs.option @value="si">SI</xs.option>
-          <xs.option @value="us">US</xs.option>
-          <xs.option @value="auto">Automatic</xs.option>
-        </XSelect>
+        <select name="units">
+          <option value="auto">Automatic</option>
+          <option value="si" selected={{eq this.units "si"}}>SI</option>
+          <option value="us" selected={{eq this.units "us"}}>US</option>
+        </select>
       </label>
     </div>
   </div>

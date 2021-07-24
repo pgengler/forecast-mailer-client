@@ -41,14 +41,15 @@ export default class SubscriptionFormComponent extends Component {
   }
 
   @action
-  updateSubscription(e) {
-    e.preventDefault();
+  updateSubscription(event) {
+    let form = event.target;
+    let units = form.querySelector('select[name=units]').value;
     this.args.subscription.setProperties({
       email: this.email,
       end: this.end ? moment(this.end) : null,
       location: this.location,
       start: this.start ? moment(this.start) : null,
-      units: this.units,
+      units,
     });
     this.args.formSubmitted(this.args.subscription);
   }
