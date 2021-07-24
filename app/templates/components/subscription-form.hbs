@@ -1,9 +1,9 @@
-<form {{on "submit" this.updateSubscription}}>
+<form {{on "submit" (prevent-default this.updateSubscription)}}>
   <div class="grid-x">
     <div class="cell">
       <label>
         Location to send the forecast for:
-        {{input type="text" name="location" id="location" value=this.location}}
+        <Input @type="text" @value={{this.location}} name="location" id="location" />
       </label>
     </div>
   </div>
@@ -12,7 +12,7 @@
     <div class="cell">
       <label>
         Email to receive forecast:
-        {{input type="text" name="email" id="email" value=this.email}}
+        <Input @type="text" @value={{this.email}} name="email" id="email" />
       </label>
     </div>
   </div>
@@ -21,16 +21,11 @@
     <div class="cell">
       <label>
         Units:
-        <XSelect
-            @onChange={{action (mut this.units)}}
-            @name="units"
-            @value={{this.units}}
-          as |xs|
-        >
-          <xs.option @value="si">SI</xs.option>
-          <xs.option @value="us">US</xs.option>
-          <xs.option @value="auto">Automatic</xs.option>
-        </XSelect>
+        <select name="units">
+          <option value="auto">Automatic</option>
+          <option value="si" selected={{eq this.units "si"}}>SI</option>
+          <option value="us" selected={{eq this.units "us"}}>US</option>
+        </select>
       </label>
     </div>
   </div>
@@ -39,20 +34,20 @@
     <div class="large-6 cell">
       <label>
         (Optional) Date to start receiving emailed forecasts:
-        {{input type="text" name="start-date" id="start-date" value=this.start}}
+        <Input @type="text" @value={{this.start}} name="start-date" id="start-date" />
       </label>
     </div>
     <div class="large-6 cell">
       <label>
         (Optional) Date to stop receiving emailed forecasts:
-        {{input type="text" name="end-date" id="end-date" value=this.end}}
+        <Input @type="text" @value={{this.end}} name="end-date" id="end-date" />
       </label>
     </div>
   </div>
 
   <div class="grid-x">
     <div class="cell">
-      <input type="submit" value="Save" class="button">
+      <button type="submit" class="button">Save</button>
       {{#if @secondaryButton}}
         {{component @secondaryButton}}
       {{/if}}

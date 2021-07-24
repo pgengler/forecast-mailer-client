@@ -24,5 +24,5 @@ export default Factory.extend({
   past: trait({
     end: () => faker.date.recent(),
     start: () => faker.date.past(),
-  })
+  }),
 });

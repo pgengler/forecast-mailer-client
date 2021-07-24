@@ -5,7 +5,7 @@
 </div>
 
 <SubscriptionForm
-  @formSubmitted={{action "saveSubscription"}}
-  @secondaryButton={{component "delete-button" onClick=(action "deleteSubscription")}}
+  @formSubmitted={{this.saveSubscription}}
+  @secondaryButton={{component "delete-button" onClick=this.deleteSubscription}}
   @subscription={{this.model}}
 />

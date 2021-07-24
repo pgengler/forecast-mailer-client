@@ -4,22 +4,24 @@ const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 const path = require('path');
 const Funnel = require('broccoli-funnel');
 const mergeTrees = require('broccoli-merge-trees');
+const nodeSass = require('node-sass');
 
-module.exports = function(defaults) {
+module.exports = function (defaults) {
   let foundationPath = path.resolve(require.resolve('foundation-sites'), '../../..');
   let foundationFunnel = mergeTrees([
     new Funnel(foundationPath, {
-      include: ['_vendor/**/*']
+      include: ['_vendor/**/*'],
     }),
     new Funnel(path.join(foundationPath, 'scss'), {
       destDir: 'foundation-sites',
-      include: ['**/*']
-    })
+      include: ['**/*'],
+    }),
   ]);
   let app = new EmberApp(defaults, {
     sassOptions: {
-      includePaths: [foundationFunnel]
-    }
+      implementation: nodeSass,
+      includePaths: [foundationFunnel],
+    },
     // Add options here
   });
 
