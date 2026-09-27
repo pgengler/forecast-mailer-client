@@ -1,8 +1,5 @@
-import { pageTitle } from 'ember-page-title';
-
 <template>
-  {{pageTitle "ForecastMailer"}}
-  <h2 id="title">Welcome to Ember</h2>
-
-  {{outlet}}
+  <div class="grid-container">
+    {{outlet}}
+  </div>
 </template>
