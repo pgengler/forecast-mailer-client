@@ -3,3 +3,4 @@
 
 # compiled output
 /dist/
+app/styles/_settings.scss

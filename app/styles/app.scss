@@ -1,0 +1,11 @@
+@import "settings";
+@import "foundation";
+@include foundation-everything;
+
+td.indefinite {
+  color: $medium-gray;
+}
+
+td.geocoding-failed {
+  color: $alert-color;
+}
