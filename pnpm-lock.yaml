@@ -75,6 +75,9 @@ importers:
       '@eslint/js':
         specifier: ^9.39.5
         version: 9.39.5
+      '@faker-js/faker':
+        specifier: ^10.6.0
+        version: 10.6.0
       '@glimmer/component':
         specifier: ^2.1.1
         version: 2.1.1(supports-color@10.2.2)
@@ -135,6 +138,9 @@ importers:
       ember-load-initializers:
         specifier: ^3.0.1
         version: 3.0.1(ember-source@7.3.0(@glimmer/component@2.1.1(supports-color@10.2.2))(supports-color@10.2.2))
+      ember-mirage:
+        specifier: ^0.4.3
+        version: 0.4.3(@babel/core@7.29.7(supports-color@10.2.2))(ember-qunit@9.1.0(@ember/test-helpers@5.5.0(@babel/core@7.29.7(supports-color@10.2.2))(supports-color@10.2.2))(qunit@2.26.0)(supports-color@10.2.2))(miragejs@0.1.48)(supports-color@10.2.2)
       ember-modifier:
         specifier: ^4.3.0
         version: 4.3.0(@babel/core@7.29.7(supports-color@10.2.2))(supports-color@10.2.2)
@@ -174,6 +180,9 @@ importers:
       globals:
         specifier: ^16.5.0
         version: 16.5.0
+      miragejs:
+        specifier: ^0.1.48
+        version: 0.1.48
       prettier:
         specifier: ^3.9.6
         version: 3.9.9
@@ -984,6 +993,10 @@ packages:
     resolution: {integrity: sha512-43/qtrDUokr7LJqoF2c3+RInu/t4zfrpYdoSDfYyhg52rwLV6TnOvdG4fXm7IkSB3wErkcmJS9iEhjVtOSEjjA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
+  '@faker-js/faker@10.6.0':
+    resolution: {integrity: sha512-3RQHgEtvL1Frl/d1cSreo7qhJ3Gk1OdNUai/CtZ8G+wYeRQnJih3s9xJ9/kgYekPQRdwgh0HXRPqMlzWGwivIQ==}
+    engines: {node: ^20.19.0 || ^22.13.0 || ^23.5.0 || >=24.0.0, npm: '>=10'}
+
   '@glimmer/component@2.1.1':
     resolution: {integrity: sha512-zFZFaMbWy+9WOcDg/kCgrkGgqkLT39EE4FgyFD0MIkQO5coQsrRZyLsiBu1tbchyM+8hT8jAv+EQVUd8u+MdSQ==}
     engines: {node: '>= 18'}
@@ -1221,6 +1234,9 @@ packages:
   '@lint-todo/utils@13.1.1':
     resolution: {integrity: sha512-F5z53uvRIF4dYfFfJP3a2Cqg+4P1dgJchJsFnsZE0eZp0LK8X7g2J0CsJHRgns+skpXOlM7n5vFGwkWCWj8qJg==}
     engines: {node: 12.* || >= 14}
+
+  '@miragejs/pretender-node-polyfill@0.1.2':
+    resolution: {integrity: sha512-M/BexG/p05C5lFfMunxo/QcgIJnMT2vDVCd00wNqK2ImZONIlEETZwWJu1QtLxtmYlSHlCFl3JNzp0tLe7OJ5g==}
 
   '@napi-rs/wasm-runtime@1.2.4':
     resolution: {integrity: sha512-AJxoUD2/15ESHbvpcyjU274nsAPLuOtPHCk0vKJM5pj//Fg/B1FXNWjPnXTT9PymCYYiHo4zPj0ZomXBKhoy7g==}
@@ -1822,6 +1838,9 @@ packages:
     engines: {node: '>=0.4.0'}
     hasBin: true
 
+  active-inflector@0.1.0:
+    resolution: {integrity: sha512-yyvuStxG8tYdpqDFjznt5wfQ9tATazT98xRycEiRuwVN2vg6RRSd43XpJVoQsfbo59DbcE4x7aoRbUJmJkztVw==}
+
   agent-base@7.1.4:
     resolution: {integrity: sha512-MnA+YT8fwfJPgBx3m60MNqakm30XOkyIoH1y6huTQvC0PwZG7ki8NacLBcrPbNoo8vEZy7Jpuk7+jMO+CUovTQ==}
     engines: {node: '>= 14'}
@@ -2211,6 +2230,9 @@ packages:
 
   caniuse-lite@1.0.30001812:
     resolution: {integrity: sha512-qN+QNNBr93TCmFrmte0bBCjSDMuRvt78VlHT99qIGPszm4QsqCX8lnyWUFkHi8B7ZBAPq8SH+UqyXNy/odMdng==}
+
+  capital-case@1.0.4:
+    resolution: {integrity: sha512-ds37W8CytHgwnhGGTi88pcPyR15qoNkOpYwmMMfnWqqWgESapLqvDx6huFjQ5vqWSn2Z06173XNA7LtMOeUh1A==}
 
   capture-exit@2.0.0:
     resolution: {integrity: sha512-PiT/hQmTonHhl/HFGN+Lx3JJUznrVYJ3+AQsnthneZbvW7x+f08Tk7yLJTLEOUvBTbduLeeBkxEaYXUOUrRq6g==}
@@ -2629,6 +2651,9 @@ packages:
   decimal.js@10.6.0:
     resolution: {integrity: sha512-YpgQiITW3JXGntzdUmyUR1V812Hn8T1YVXhCu+wO3OpS4eU9l4YdD3qjyiKdV6mvV29zapkMeD390UVEf2lkUg==}
 
+  decorator-transforms@1.2.1:
+    resolution: {integrity: sha512-UUtmyfdlHvYoX3VSG1w5rbvBQ2r5TX1JsE4hmKU9snleFymadA3VACjl6SRfi9YgBCSjBbfQvR1bs9PRW9yBKw==}
+
   decorator-transforms@2.4.0:
     resolution: {integrity: sha512-IB+0RqnJpuS7ndH4dVY5dfWTZsrCzN3avWFdjSiET0uT2U24jKywjpVEK97TflnZkZgiSRfmeqc1WfS+1CI23w==}
     peerDependencies:
@@ -2803,6 +2828,15 @@ packages:
     engines: {node: '>= 18.*'}
     peerDependencies:
       ember-source: '>= 5'
+
+  ember-mirage@0.4.3:
+    resolution: {integrity: sha512-48f3MnVuxw1Vc7/i0PRh6nlP/gIT+CbY9obt6hDAlB2p0EnLLAglnnyQ7MgOZZIvhHiYXQZ7jLLkRWF0FyP8IQ==}
+    peerDependencies:
+      ember-qunit: '*'
+      miragejs: '>= 0.1.47 || >= 0.2.0-alpha.3'
+    peerDependenciesMeta:
+      ember-qunit:
+        optional: true
 
   ember-modifier@4.3.0:
     resolution: {integrity: sha512-O0rirSLQbGg0VJ/NqoQ4uN1bh2iAekZC/Ykma+FkjCM2ofrO38u+d8n3+AK6uVWeMJmogGX2KL+Is5fofoInJg==}
@@ -3093,6 +3127,9 @@ packages:
   extract-stack@2.0.0:
     resolution: {integrity: sha512-AEo4zm+TenK7zQorGK1f9mJ8L14hnTDi2ZQPR+Mub1NX8zimka1mXpV5LpH8x9HoUmFSHZCfLHqWvp0Y4FxxzQ==}
     engines: {node: '>=8'}
+
+  fake-xml-http-request@2.1.2:
+    resolution: {integrity: sha512-HaFMBi7r+oEC9iJNpc3bvcW7Z7iLmM26hPDmlb0mFwyANSsOQAtJxbdWsXITKOzZUyMYK0zYCv3h5yDj9TsiXg==}
 
   fast-deep-equal@3.1.3:
     resolution: {integrity: sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q==}
@@ -3580,6 +3617,9 @@ packages:
     resolution: {integrity: sha512-JmXMZ6wuvDmLiHEml9ykzqO6lwFbof0GG4IkcGaENdCRDDmMVnny7s5HsIgHCbaq0w2MyPhDqkhTUgS2LU2PHA==}
     engines: {node: '>=0.8.19'}
 
+  inflected@2.1.0:
+    resolution: {integrity: sha512-hAEKNxvHf2Iq3H60oMBHkB4wl5jn3TPF3+fXek/sRwAB5gP9xWs4r7aweSF95f99HFoz69pnZTcu8f0SIHV18w==}
+
   inflection@2.0.1:
     resolution: {integrity: sha512-wzkZHqpb4eGrOKBl34xy3umnYHx8Si5R1U4fwmdxLo5gdH6mEK8gclckTj/qWqy4Je0bsDYe/qazZYuO7xe3XQ==}
     engines: {node: '>=14.0.0'}
@@ -3938,6 +3978,9 @@ packages:
     resolution: {integrity: sha512-XT9ewWAC43tiAV7xDAPflMkG0qOPn2QjHqlgX8FOqmWa/rxnyYDulF9T0F7tRy1u+TVTmK/M//6VIOye+2zDXg==}
     engines: {node: '>=20'}
 
+  lodash-es@4.18.1:
+    resolution: {integrity: sha512-J8xewKD/Gk22OZbhpOVSwcs60zhd95ESDwezOFuA3/099925PdHJ7OFHNTGtajL3AlZkykD32HykiMo+BIBI8A==}
+
   lodash.camelcase@4.3.0:
     resolution: {integrity: sha512-TwuEnCnxbc3rAvhf/LbG7tJUDzhqXyFnv3dtzLOPgCG/hODL7WFnsbwktkD7yUV0RrreP/l1PALq/YSg6VvjlA==}
 
@@ -4106,6 +4149,10 @@ packages:
   minipass@7.1.3:
     resolution: {integrity: sha512-tEBHqDnIoM/1rXME1zgka9g6Q2lcoCkxHLuc7ODJ5BxbP5d4c2Z5cGgtXAku59200Cx7diuHTOYfSBD8n6mm8A==}
     engines: {node: '>=16 || 14 >=14.17'}
+
+  miragejs@0.1.48:
+    resolution: {integrity: sha512-MGZAq0Q3OuRYgZKvlB69z4gLN4G3PvgC4A2zhkCXCXrLD5wm2cCnwNB59xOBVA+srZ0zEes6u+VylcPIkB4SqA==}
+    engines: {node: 6.* || 8.* || >= 10.*}
 
   mkdirp@0.5.6:
     resolution: {integrity: sha512-FP+p8RB8OWpF3YZBCrP5gtADmtXApB5AMLn+vdyA+PyxCjrCs00mjyUozssO33cwDeT3wNGdLxJ5M//YqtHAJw==}
@@ -4431,6 +4478,9 @@ packages:
   prelude-ls@1.2.1:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
+
+  pretender@3.4.7:
+    resolution: {integrity: sha512-jkPAvt1BfRi0RKamweJdEcnjkeu7Es8yix3bJ+KgBC5VpG/Ln4JE3hYN6vJym4qprm8Xo5adhWpm3HCoft1dOw==}
 
   prettier-plugin-ember-template-tag@2.1.8:
     resolution: {integrity: sha512-ioLdBFoZ11kuiuFF9/bGwHgzjiU3vQVOF1rQhcuEqGc1jmKBH+G3i3BL2yHGum2Z2IQOE/7MPstYo5iAU0Uhlw==}
@@ -5383,6 +5433,9 @@ packages:
     hasBin: true
     peerDependencies:
       browserslist: '>= 4.21.0'
+
+  upper-case-first@2.0.2:
+    resolution: {integrity: sha512-514ppYHBaKwfJRK/pNC6c/OxfGa0obSnAl106u97Ed0I625Nin96KAjttZF6ZL3e1XLtphxnqrOi9iWgm+u+bg==}
 
   uri-js@4.4.1:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
@@ -6801,6 +6854,8 @@ snapshots:
       '@eslint/core': 0.17.0
       levn: 0.4.1
 
+  '@faker-js/faker@10.6.0': {}
+
   '@glimmer/component@2.1.1(supports-color@10.2.2)':
     dependencies:
       '@embroider/addon-shim': 1.10.3(supports-color@10.2.2)
@@ -7093,6 +7148,8 @@ snapshots:
       slash: 3.0.0
       tslib: 2.8.1
       upath: 2.0.1
+
+  '@miragejs/pretender-node-polyfill@0.1.2': {}
 
   '@napi-rs/wasm-runtime@1.2.4(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)':
     dependencies:
@@ -7683,6 +7740,10 @@ snapshots:
       acorn: 8.18.0
 
   acorn@8.18.0: {}
+
+  active-inflector@0.1.0:
+    dependencies:
+      capital-case: 1.0.4
 
   agent-base@7.1.4: {}
 
@@ -8277,6 +8338,12 @@ snapshots:
 
   caniuse-lite@1.0.30001812: {}
 
+  capital-case@1.0.4:
+    dependencies:
+      no-case: 3.0.4
+      tslib: 2.8.1
+      upper-case-first: 2.0.2
+
   capture-exit@2.0.0:
     dependencies:
       rsvp: 4.8.5
@@ -8527,6 +8594,13 @@ snapshots:
       supports-color: 10.2.2
 
   decimal.js@10.6.0: {}
+
+  decorator-transforms@1.2.1(@babel/core@7.29.7(supports-color@10.2.2)):
+    dependencies:
+      '@babel/plugin-syntax-decorators': 7.29.7(@babel/core@7.29.7(supports-color@10.2.2))
+      babel-import-util: 2.1.1
+    transitivePeerDependencies:
+      - '@babel/core'
 
   decorator-transforms@2.4.0(@babel/core@7.29.7(supports-color@10.2.2)):
     dependencies:
@@ -8881,6 +8955,20 @@ snapshots:
   ember-load-initializers@3.0.1(ember-source@7.3.0(@glimmer/component@2.1.1(supports-color@10.2.2))(supports-color@10.2.2)):
     dependencies:
       ember-source: 7.3.0(@glimmer/component@2.1.1(supports-color@10.2.2))(supports-color@10.2.2)
+
+  ember-mirage@0.4.3(@babel/core@7.29.7(supports-color@10.2.2))(ember-qunit@9.1.0(@ember/test-helpers@5.5.0(@babel/core@7.29.7(supports-color@10.2.2))(supports-color@10.2.2))(qunit@2.26.0)(supports-color@10.2.2))(miragejs@0.1.48)(supports-color@10.2.2):
+    dependencies:
+      '@ember/test-helpers': 5.5.0(@babel/core@7.29.7(supports-color@10.2.2))(supports-color@10.2.2)
+      '@embroider/addon-shim': 1.10.3(supports-color@10.2.2)
+      active-inflector: 0.1.0
+      decorator-transforms: 1.2.1(@babel/core@7.29.7(supports-color@10.2.2))
+      lodash-es: 4.18.1
+      miragejs: 0.1.48
+    optionalDependencies:
+      ember-qunit: 9.1.0(@ember/test-helpers@5.5.0(@babel/core@7.29.7(supports-color@10.2.2))(supports-color@10.2.2))(qunit@2.26.0)(supports-color@10.2.2)
+    transitivePeerDependencies:
+      - '@babel/core'
+      - supports-color
 
   ember-modifier@4.3.0(@babel/core@7.29.7(supports-color@10.2.2))(supports-color@10.2.2):
     dependencies:
@@ -9275,6 +9363,8 @@ snapshots:
       tmp: 0.0.33
 
   extract-stack@2.0.0: {}
+
+  fake-xml-http-request@2.1.2: {}
 
   fast-deep-equal@3.1.3: {}
 
@@ -9847,6 +9937,8 @@ snapshots:
 
   imurmurhash@0.1.4: {}
 
+  inflected@2.1.0: {}
+
   inflection@2.0.1: {}
 
   inflection@3.0.2: {}
@@ -10183,6 +10275,8 @@ snapshots:
     dependencies:
       p-locate: 6.0.0
 
+  lodash-es@4.18.1: {}
+
   lodash.camelcase@4.3.0: {}
 
   lodash.debounce@4.0.8: {}
@@ -10331,6 +10425,13 @@ snapshots:
   minipass@4.2.8: {}
 
   minipass@7.1.3: {}
+
+  miragejs@0.1.48:
+    dependencies:
+      '@miragejs/pretender-node-polyfill': 0.1.2
+      inflected: 2.1.0
+      lodash: 4.18.1
+      pretender: 3.4.7
 
   mkdirp@0.5.6:
     dependencies:
@@ -10628,6 +10729,11 @@ snapshots:
       source-map-js: 1.2.1
 
   prelude-ls@1.2.1: {}
+
+  pretender@3.4.7:
+    dependencies:
+      fake-xml-http-request: 2.1.2
+      route-recognizer: 0.3.4
 
   prettier-plugin-ember-template-tag@2.1.8(prettier@3.9.9)(supports-color@10.2.2):
     dependencies:
@@ -11717,6 +11823,10 @@ snapshots:
       browserslist: 4.29.1
       escalade: 3.2.0
       picocolors: 1.1.1
+
+  upper-case-first@2.0.2:
+    dependencies:
+      tslib: 2.8.1
 
   uri-js@4.4.1:
     dependencies:
