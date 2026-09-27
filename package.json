@@ -54,6 +54,7 @@
     "@glint/template": "^1.9.0",
     "@glint/tsserver-plugin": "^2.7.7",
     "@rollup/plugin-babel": "^7.1.0",
+    "@types/moment": "^2.13.0",
     "@types/qunit": "^2.19.14",
     "@types/rsvp": "^4.0.9",
     "@warp-drive/core": "~5.8.2",
@@ -97,5 +98,11 @@
   },
   "ember": {
     "edition": "octane"
+  },
+  "dependencies": {
+    "ember-cli-flash": "^7.0.0",
+    "foundation-sites": "^6.9.0",
+    "moment": "^2.31.0",
+    "tracked-toolbox": "^3.0.0"
   }
 }
