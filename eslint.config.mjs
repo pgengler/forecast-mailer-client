@@ -94,6 +94,14 @@ export default defineConfig([
     ],
   },
   {
+    files: ['app/**/*.{ts,gts}'],
+    rules: {
+      // We intentionally use legacy request patterns (store.findAll, store.findRecord, etc.)
+      // via WarpDrive's legacy-compat layer.
+      'warp-drive/no-legacy-request-patterns': 'off',
+    },
+  },
+  {
     ...qunit.configs.recommended,
     files: ['tests/**/*-test.{js,gjs,ts,gts}'],
     plugins: {

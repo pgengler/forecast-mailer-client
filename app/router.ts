@@ -7,5 +7,8 @@ export default class Router extends EmberRouter {
 }
 
 Router.map(function () {
-  // Add route declarations here
+  this.route('subscriptions', function () {
+    this.route('new');
+    this.route('edit', { path: '/:id' });
+  });
 });
