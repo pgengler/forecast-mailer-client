@@ -10,6 +10,11 @@ import setupInspector from '@embroider/legacy-inspector-support/ember-source-4.1
 
 if (macroCondition(isDevelopingApp())) {
   importSync('./deprecation-workflow');
+
+  const { makeServer } = importSync(
+    './mirage/config',
+  ) as typeof import('./mirage/config');
+  makeServer({ environment: 'development' });
 }
 
 export default class App extends Application {
