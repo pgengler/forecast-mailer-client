@@ -17,7 +17,7 @@ export default async function (defaults) {
     // and should be updated when that changes
     compatWith: '5.8',
     deprecations: {
-      // ... list individual deprecations that have been resolved here
+      ENABLE_LEGACY_REQUEST_METHODS: true,
     },
   });
 
