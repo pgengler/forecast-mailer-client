@@ -65,14 +65,17 @@ module('Acceptance | Subscriptions | New', function (hooks) {
     this.server.create('subscription');
 
     let savedToServer = false;
+    let submittedUnits;
     this.server.post('/subscriptions', function ({ subscriptions }) {
       savedToServer = true;
+      submittedUnits = this.normalizedRequestAttrs().units;
 
       let newSubscription = subscriptions.create(this.normalizedRequestAttrs());
       return this.serialize(newSubscription);
     });
 
     await visit('/subscriptions/new');
+    assert.dom('select[name=units]').hasValue('both', 'unit field defaults to both');
     await fillIn('input[name=email]', 'email@example.com');
     await fillIn('input[name=location]', 'Springfield, TV');
     await fillIn('input[name=start-date]', '2017-07-01');
@@ -80,6 +83,7 @@ module('Acceptance | Subscriptions | New', function (hooks) {
     await click('button[type=submit]');
 
     assert.ok(savedToServer, 'new subscription saved to server');
+    assert.strictEqual(submittedUnits, 'both', 'units sent to server defaults to both');
     assert.strictEqual(currentURL(), '/subscriptions', 'redirects back to subscription listing');
     assert.dom('.subscription').exists({ count: 2 }, 'displays the newly-added subscription');
     assert.dom('.success').includesText('Subscription created');
@@ -130,6 +134,26 @@ module('Acceptance | Subscriptions | Edit', function (hooks) {
     assert.dom('.subscription td:nth-child(3)').hasText('2017-07-01', 'start date was updated');
     assert.dom('.subscription td:nth-child(4)').hasText('2017-08-01', 'end date was updated');
     assert.dom('.subscription td:nth-child(5)').hasText('si', 'units were updated');
+  });
+
+  test('editing a subscription without changing units keeps the current value', async function (assert) {
+    let subscription = this.server.create('subscription', { units: 'auto' });
+
+    let submittedUnits;
+    this.server.patch('/subscriptions/:id', function ({ subscriptions }, request) {
+      submittedUnits = this.normalizedRequestAttrs().units;
+      let subscription = subscriptions.find(request.params.id);
+      subscription.update(this.normalizedRequestAttrs());
+      return this.serialize(subscription);
+    });
+
+    await visit(`/subscriptions/${subscription.id}`);
+
+    assert.dom('select[name=units]').hasValue('auto', 'unit field displays correct initial value');
+
+    await click('button[type=submit]');
+
+    assert.strictEqual(submittedUnits, 'auto', 'units sent to server remains auto');
   });
 });
 

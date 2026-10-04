@@ -95,7 +95,8 @@ export default class SubscriptionForm extends Component<SubscriptionFormSignatur
           <label>
             Units:
             <select name="units">
-              <option value="auto">Automatic</option>
+              <option value="both" selected={{eq this.units "both"}}>Both</option>
+              <option value="auto" selected={{eq this.units "auto"}}>Automatic</option>
               <option value="si" selected={{eq this.units "si"}}>SI</option>
               <option value="us" selected={{eq this.units "us"}}>US</option>
             </select>
