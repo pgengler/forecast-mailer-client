@@ -9,9 +9,6 @@ export default class SubscriptionsEditRoute extends Route {
   @service declare store: Store;
 
   async model(params: { id: string }): Promise<SubscriptionsEditRouteModel> {
-    return this.store.findRecord(
-      'subscription',
-      params.id,
-    ) as Promise<SubscriptionsEditRouteModel>;
+    return this.store.findRecord('subscription', params.id) as Promise<SubscriptionsEditRouteModel>;
   }
 }

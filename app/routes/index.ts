@@ -6,6 +6,6 @@ export default class IndexRoute extends Route {
   @service declare router: RouterService;
 
   redirect(): void {
-    this.router.transitionTo('subscriptions.index');
+    this.router.replaceWith('subscriptions.index');
   }
 }

@@ -18,10 +18,7 @@ module('Integration | Component | subscription-form', function (hooks) {
 
     await render(
       <template>
-        <SubscriptionForm
-          @formSubmitted={{this.formSubmitted}}
-          @subscription={{this.subscription}}
-        />
+        <SubscriptionForm @formSubmitted={{this.formSubmitted}} @subscription={{this.subscription}} />
       </template>,
     );
     await click('button[type=submit]');
@@ -29,20 +26,19 @@ module('Integration | Component | subscription-form', function (hooks) {
     assert.ok(formSubmitActionTriggered, 'form-submitted action was sent');
   });
 
-  test('it renders a delete button when onDelete is provided', async function (assert) {
-    this.onDelete = () => null;
-    this.formSubmitted = () => null;
+  test('it renders <:secondary-action> content when some is provided', async function (assert) {
+    const noop = () => null;
 
     await render(
       <template>
-        <SubscriptionForm
-          @formSubmitted={{this.formSubmitted}}
-          @subscription={{this.subscription}}
-          @onDelete={{this.onDelete}}
-        />
+        <SubscriptionForm @formSubmitted={{noop}} @subscription={{this.subscription}}>
+          <:secondary-action>
+            <div data-test-secondary-action-content>Foo</div>
+          </:secondary-action>
+        </SubscriptionForm>
       </template>,
     );
 
-    assert.dom('[data-test-delete-button]').exists('delete button is rendered');
+    assert.dom('[data-test-secondary-action-content]').exists('<:secondary-action> content is rendered');
   });
 });

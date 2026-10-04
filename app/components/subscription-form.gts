@@ -4,8 +4,7 @@ import { tracked } from '@glimmer/tracking';
 import { localCopy } from 'tracked-toolbox';
 import { on } from '@ember/modifier';
 import { Input } from '@ember/component';
-import eq from 'forecast-mailer/helpers/eq';
-import DeleteButton from 'forecast-mailer/components/delete-button';
+import { eq, preventDefault } from 'forecast-mailer/helpers';
 import moment from 'moment';
 import type Subscription from 'forecast-mailer/models/subscription';
 
@@ -15,7 +14,9 @@ interface SubscriptionFormSignature {
   Args: {
     subscription: Subscription;
     formSubmitted: (subscription: Subscription) => void;
-    onDelete?: () => void;
+  };
+  Blocks: {
+    'secondary-action'?: [];
   };
 }
 
@@ -57,11 +58,8 @@ export default class SubscriptionForm extends Component<SubscriptionFormSignatur
 
   @action
   updateSubscription(event: Event): void {
-    event.preventDefault();
     const form = event.target as HTMLFormElement;
-    const units = (
-      form.querySelector('select[name=units]') as HTMLSelectElement
-    ).value;
+    const units = (form.querySelector('select[name=units]') as HTMLSelectElement).value;
     this.args.subscription.setProperties({
       email: this.email,
       end: this.end ? moment(this.end) : null,
@@ -73,17 +71,12 @@ export default class SubscriptionForm extends Component<SubscriptionFormSignatur
   }
 
   <template>
-    <form {{on "submit" this.updateSubscription}}>
+    <form {{on "submit" (preventDefault this.updateSubscription)}}>
       <div class="grid-x">
         <div class="cell">
           <label>
             Location to send the forecast for:
-            <Input
-              @type="text"
-              @value={{this.location}}
-              name="location"
-              id="location"
-            />
+            <Input @type="text" @value={{this.location}} name="location" id="location" />
           </label>
         </div>
       </div>
@@ -114,23 +107,13 @@ export default class SubscriptionForm extends Component<SubscriptionFormSignatur
         <div class="large-6 cell">
           <label>
             (Optional) Date to start receiving emailed forecasts:
-            <Input
-              @type="text"
-              @value={{this.start}}
-              name="start-date"
-              id="start-date"
-            />
+            <Input @type="text" @value={{this.start}} name="start-date" id="start-date" />
           </label>
         </div>
         <div class="large-6 cell">
           <label>
             (Optional) Date to stop receiving emailed forecasts:
-            <Input
-              @type="text"
-              @value={{this.end}}
-              name="end-date"
-              id="end-date"
-            />
+            <Input @type="text" @value={{this.end}} name="end-date" id="end-date" />
           </label>
         </div>
       </div>
@@ -138,9 +121,7 @@ export default class SubscriptionForm extends Component<SubscriptionFormSignatur
       <div class="grid-x">
         <div class="cell">
           <button type="submit" class="button">Save</button>
-          {{#if @onDelete}}
-            <DeleteButton @onClick={{@onDelete}} />
-          {{/if}}
+          {{yield to="secondary-action"}}
         </div>
       </div>
     </form>

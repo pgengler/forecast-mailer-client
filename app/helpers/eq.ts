@@ -1,5 +1,3 @@
-import { helper } from '@ember/component/helper';
-
-export default helper(function eq([a, b]: [unknown, unknown]) {
+export default function eq(a: unknown, b: unknown) {
   return a === b;
-});
+}

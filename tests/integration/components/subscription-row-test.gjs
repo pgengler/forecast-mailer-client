@@ -16,11 +16,7 @@ module('Integration | Component | subscription-row', function (hooks) {
       createdAt: moment('2018-12-31'),
       start: moment('2019-01-01'),
     });
-    await render(
-      <template>
-        <SubscriptionRow @subscription={{this.subscription}} />
-      </template>,
-    );
+    await render(<template><SubscriptionRow @subscription={{this.subscription}} /></template>);
 
     assert.dom('td:nth-child(3)').hasText('2019-01-01');
     assert.dom('td:nth-child(3)').doesNotHaveClass('indefinite');
@@ -31,11 +27,7 @@ module('Integration | Component | subscription-row', function (hooks) {
       createdAt: moment('2019-09-25'),
       start: null,
     });
-    await render(
-      <template>
-        <SubscriptionRow @subscription={{this.subscription}} />
-      </template>,
-    );
+    await render(<template><SubscriptionRow @subscription={{this.subscription}} /></template>);
 
     assert.dom('td:nth-child(3)').hasText('2019-09-25');
     assert.dom('td:nth-child(3)').hasClass('indefinite');
@@ -45,11 +37,7 @@ module('Integration | Component | subscription-row', function (hooks) {
     this.subscription = this.store.createRecord('subscription', {
       end: moment('2019-01-01', 'YYYY-MM-DD'),
     });
-    await render(
-      <template>
-        <SubscriptionRow @subscription={{this.subscription}} />
-      </template>,
-    );
+    await render(<template><SubscriptionRow @subscription={{this.subscription}} /></template>);
 
     assert.dom('td:nth-child(4)').hasText('2019-01-01');
   });
@@ -58,11 +46,7 @@ module('Integration | Component | subscription-row', function (hooks) {
     this.subscription = this.store.createRecord('subscription', {
       end: null,
     });
-    await render(
-      <template>
-        <SubscriptionRow @subscription={{this.subscription}} />
-      </template>,
-    );
+    await render(<template><SubscriptionRow @subscription={{this.subscription}} /></template>);
 
     assert.dom('td:nth-child(4)').hasText('');
   });
@@ -71,11 +55,7 @@ module('Integration | Component | subscription-row', function (hooks) {
     this.subscription = this.store.createRecord('subscription', {
       geocoded: false,
     });
-    await render(
-      <template>
-        <SubscriptionRow @subscription={{this.subscription}} />
-      </template>,
-    );
+    await render(<template><SubscriptionRow @subscription={{this.subscription}} /></template>);
 
     assert.dom('td:nth-child(2)').hasClass('geocoding-failed');
   });
@@ -84,11 +64,7 @@ module('Integration | Component | subscription-row', function (hooks) {
     this.subscription = this.store.createRecord('subscription', {
       geocoded: true,
     });
-    await render(
-      <template>
-        <SubscriptionRow @subscription={{this.subscription}} />
-      </template>,
-    );
+    await render(<template><SubscriptionRow @subscription={{this.subscription}} /></template>);
 
     assert.dom('td:nth-child(2)').doesNotHaveClass('geocoding-failed');
   });

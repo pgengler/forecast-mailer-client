@@ -34,10 +34,7 @@ export default class SubscriptionsIndex extends Component<SubscriptionsIndexSign
 
     <div class="grid-x">
       <div class="cell">
-        <SubscriptionTable
-          @subscriptions={{this.currentSubscriptions}}
-          data-test-subscriptions-type="current"
-        />
+        <SubscriptionTable @subscriptions={{this.currentSubscriptions}} data-test-subscriptions-type="current" />
       </div>
     </div>
 
@@ -52,20 +49,14 @@ export default class SubscriptionsIndex extends Component<SubscriptionsIndexSign
     <div class="grid-x">
       <div class="cell">
         <h4>Upcoming</h4>
-        <SubscriptionTable
-          @subscriptions={{this.futureSubscriptions}}
-          data-test-subscriptions-type="future"
-        />
+        <SubscriptionTable @subscriptions={{this.futureSubscriptions}} data-test-subscriptions-type="future" />
       </div>
     </div>
 
     <div class="grid-x">
       <div class="cell">
         <h4>Past</h4>
-        <SubscriptionTable
-          @subscriptions={{this.pastSubscriptions}}
-          data-test-subscriptions-type="past"
-        />
+        <SubscriptionTable @subscriptions={{this.pastSubscriptions}} data-test-subscriptions-type="past" />
       </div>
     </div>
   </template>

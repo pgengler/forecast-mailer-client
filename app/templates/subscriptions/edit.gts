@@ -1,10 +1,11 @@
-import Component from '@glimmer/component';
-import { service } from '@ember/service';
+import { on } from '@ember/modifier';
 import { action } from '@ember/object';
+import type RouterService from '@ember/routing/router-service';
+import { service } from '@ember/service';
+import Component from '@glimmer/component';
+import type { FlashMessagesService } from 'ember-cli-flash';
 import SubscriptionForm from 'forecast-mailer/components/subscription-form';
 import type { SubscriptionsEditRouteModel } from 'forecast-mailer/routes/subscriptions/edit';
-import type { FlashMessagesService } from 'ember-cli-flash';
-import type RouterService from '@ember/routing/router-service';
 
 interface SubscriptionsEditSignature {
   Args: {
@@ -13,8 +14,8 @@ interface SubscriptionsEditSignature {
 }
 
 export default class SubscriptionsEdit extends Component<SubscriptionsEditSignature> {
-  @service declare router: RouterService;
   @service declare flashMessages: FlashMessagesService;
+  @service declare router: RouterService;
 
   @action
   async deleteSubscription(): Promise<void> {
@@ -42,7 +43,17 @@ export default class SubscriptionsEdit extends Component<SubscriptionsEditSignat
     <SubscriptionForm
       @subscription={{@model}}
       @formSubmitted={{this.saveSubscription}}
-      @onDelete={{this.deleteSubscription}}
-    />
+    >
+      <:secondary-action>
+        <button
+          class="alert button"
+          type="button"
+          {{on "click" this.deleteSubscription}}
+          data-test-delete-button
+        >
+          Delete
+        </button>
+      </:secondary-action>
+    </SubscriptionForm>
   </template>
 }

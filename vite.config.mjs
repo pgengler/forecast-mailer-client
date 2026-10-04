@@ -19,10 +19,7 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        loadPaths: [
-          resolve(root, 'node_modules'),
-          resolve(root, 'node_modules/foundation-sites/scss'),
-        ],
+        loadPaths: [resolve(root, 'node_modules'), resolve(root, 'node_modules/foundation-sites/scss')],
       },
     },
     lightningcss: {

@@ -9,8 +9,6 @@ export default class SubscriptionsIndexRoute extends Route {
   @service declare store: Store;
 
   async model(): Promise<SubscriptionsIndexRouteModel> {
-    return this.store.findAll(
-      'subscription',
-    ) as Promise<SubscriptionsIndexRouteModel>;
+    return this.store.findAll('subscription') as Promise<SubscriptionsIndexRouteModel>;
   }
 }

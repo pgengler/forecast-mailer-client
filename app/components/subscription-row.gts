@@ -17,8 +17,7 @@ export default class SubscriptionRow extends Component<SubscriptionRowSignature>
   }
 
   get formattedStart(): string {
-    const date =
-      this.args.subscription.start || this.args.subscription.createdAt;
+    const date = this.args.subscription.start || this.args.subscription.createdAt;
     return date ? date.format(DATE_FORMAT) : '';
   }
 

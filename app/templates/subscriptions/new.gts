@@ -17,9 +17,7 @@ export default class SubscriptionsNew extends Component<SubscriptionsNewSignatur
   @service declare flashMessages: FlashMessagesService;
 
   @action
-  async saveSubscription(
-    subscription: SubscriptionsNewRouteModel,
-  ): Promise<void> {
+  async saveSubscription(subscription: SubscriptionsNewRouteModel): Promise<void> {
     await subscription.save();
     this.flashMessages.success('Subscription created');
     this.router.transitionTo('subscriptions.index');
@@ -32,9 +30,6 @@ export default class SubscriptionsNew extends Component<SubscriptionsNewSignatur
       </div>
     </div>
 
-    <SubscriptionForm
-      @subscription={{@model}}
-      @formSubmitted={{this.saveSubscription}}
-    />
+    <SubscriptionForm @subscription={{@model}} @formSubmitted={{this.saveSubscription}} />
   </template>
 }

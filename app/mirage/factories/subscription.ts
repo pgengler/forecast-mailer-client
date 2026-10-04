@@ -8,8 +8,7 @@ function trait<T extends Record<string, unknown>>(extension: T): T {
 
 export default Factory.extend({
   email: () => faker.internet.email(),
-  location: () =>
-    `${faker.location.city()}, ${faker.location.state({ abbreviated: true })}`,
+  location: () => `${faker.location.city()}, ${faker.location.state({ abbreviated: true })}`,
   start: () => faker.date.recent(),
   end: () => faker.date.future(),
   units: () => faker.helpers.arrayElement(['si', 'us', 'auto']),

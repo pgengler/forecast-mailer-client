@@ -9,9 +9,6 @@ export default class SubscriptionsNewRoute extends Route {
   @service declare store: Store;
 
   model(): SubscriptionsNewRouteModel {
-    return this.store.createRecord(
-      'subscription',
-      {},
-    ) as SubscriptionsNewRouteModel;
+    return this.store.createRecord('subscription', {}) as SubscriptionsNewRouteModel;
   }
 }
