@@ -1,10 +1,5 @@
-import { Factory } from 'miragejs';
+import { Factory, trait } from 'miragejs';
 import { faker } from '@faker-js/faker';
-
-// miragejs exports `trait` at runtime but not in its type definitions.
-function trait<T extends Record<string, unknown>>(extension: T): T {
-  return { extension, __isTrait__: true } as unknown as T;
-}
 
 export default Factory.extend({
   email: () => faker.internet.email(),

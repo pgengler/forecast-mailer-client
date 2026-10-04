@@ -6,9 +6,6 @@ interface SubscriptionTableSignature {
   Args: {
     subscriptions: Subscription[];
   };
-  Blocks: {
-    default: [];
-  };
   Element: HTMLTableElement;
 }
 

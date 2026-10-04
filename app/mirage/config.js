@@ -3,7 +3,7 @@ import SubscriptionFactory from './factories/subscription';
 import ApplicationSerializer from './serializers/application';
 import defaultScenario from './scenarios/default';
 
-export function makeServer(config: Record<string, unknown> = {}) {
+export function makeServer(config = {}) {
   return createServer({
     ...config,
     models: {

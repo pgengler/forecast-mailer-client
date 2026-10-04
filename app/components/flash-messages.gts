@@ -12,7 +12,7 @@ export default class FlashMessages extends Component<FlashMessagesSignature> {
 
   <template>
     {{#each this.flashMessages.queue as |item|}}
-      <FlashMessage @flash={{item}} as |component flash|>
+      <FlashMessage @flash={{item}} as |_component flash|>
         <div class="grid-x">
           <div class="large-6 cell">
             <div data-alert class="callout {{flash.type}}">
