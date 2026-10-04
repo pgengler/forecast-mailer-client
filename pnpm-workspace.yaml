@@ -1,2 +1,5 @@
 allowBuilds:
   "@parcel/watcher": true
+  core-js: false
+  cpu-features: false
+  ssh2: false

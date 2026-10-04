@@ -44,7 +44,10 @@ Make use of the many generators for code, try `pnpm ember help generate` for mor
 
 ### Deploying
 
-Specify what it takes to deploy your app.
+- `pnpm deploy` uploads a new revision to the server (builds with Vite via ember-cli-deploy and rsyncs to `hyperion.pgengler.net:/srv/apps/forecast-mailer/client/revisions/`)
+- `pnpm ember deploy production --activate` uploads and activates the revision in one step
+- `pnpm ember deploy:list production` lists revisions on the server
+- `pnpm ember deploy:activate production --revision=<key>` activates a previously-uploaded revision
 
 ## Further Reading / Useful Links
 
