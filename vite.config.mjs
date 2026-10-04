@@ -16,6 +16,11 @@ export default defineConfig({
       extensions,
     }),
   ],
+  server: {
+    proxy: {
+      '/api': 'http://localhost:3000',
+    },
+  },
   css: {
     preprocessorOptions: {
       scss: {
