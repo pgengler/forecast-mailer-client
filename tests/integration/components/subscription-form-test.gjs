@@ -26,19 +26,19 @@ module('Integration | Component | subscription-form', function (hooks) {
     assert.ok(formSubmitActionTriggered, 'form-submitted action was sent');
   });
 
-  test('it renders <:secondary-action> content when some is provided', async function (assert) {
+  test('it renders <:secondaryAction> content when some is provided', async function (assert) {
     const noop = () => null;
 
     await render(
       <template>
         <SubscriptionForm @formSubmitted={{noop}} @subscription={{this.subscription}}>
-          <:secondary-action>
+          <:secondaryAction>
             <div data-test-secondary-action-content>Foo</div>
-          </:secondary-action>
+          </:secondaryAction>
         </SubscriptionForm>
       </template>,
     );
 
-    assert.dom('[data-test-secondary-action-content]').exists('<:secondary-action> content is rendered');
+    assert.dom('[data-test-secondary-action-content]').exists('<:secondaryAction> content is rendered');
   });
 });

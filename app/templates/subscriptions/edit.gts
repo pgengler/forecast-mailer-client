@@ -1,4 +1,3 @@
-import { on } from '@ember/modifier';
 import { action } from '@ember/object';
 import type RouterService from '@ember/routing/router-service';
 import { service } from '@ember/service';
@@ -25,9 +24,7 @@ export default class SubscriptionsEdit extends Component<SubscriptionsEditSignat
   }
 
   @action
-  async saveSubscription(
-    subscription: SubscriptionsEditRouteModel,
-  ): Promise<void> {
+  async saveSubscription(subscription: SubscriptionsEditRouteModel): Promise<void> {
     await subscription.save();
     this.flashMessages.success('Subscription updated', { timeout: 30000 });
     this.router.transitionTo('subscriptions.index');
@@ -40,20 +37,12 @@ export default class SubscriptionsEdit extends Component<SubscriptionsEditSignat
       </div>
     </div>
 
-    <SubscriptionForm
-      @subscription={{@model}}
-      @formSubmitted={{this.saveSubscription}}
-    >
-      <:secondary-action>
-        <button
-          class="alert button"
-          type="button"
-          {{on "click" this.deleteSubscription}}
-          data-test-delete-button
-        >
+    <SubscriptionForm @subscription={{@model}} @formSubmitted={{this.saveSubscription}}>
+      <:secondaryAction>
+        <button class="alert button" type="button" {{on "click" this.deleteSubscription}} data-test-delete-button>
           Delete
         </button>
-      </:secondary-action>
+      </:secondaryAction>
     </SubscriptionForm>
   </template>
 }

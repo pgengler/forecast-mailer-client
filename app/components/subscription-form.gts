@@ -16,7 +16,7 @@ interface SubscriptionFormSignature {
     formSubmitted: (subscription: Subscription) => void;
   };
   Blocks: {
-    'secondary-action'?: [];
+    secondaryAction?: [];
   };
 }
 
@@ -121,7 +121,7 @@ export default class SubscriptionForm extends Component<SubscriptionFormSignatur
       <div class="grid-x">
         <div class="cell">
           <button type="submit" class="button">Save</button>
-          {{yield to="secondary-action"}}
+          {{yield to="secondaryAction"}}
         </div>
       </div>
     </form>
