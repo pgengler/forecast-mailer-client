@@ -21,6 +21,7 @@ module.exports = function (environment) {
   };
 
   if (environment === 'development') {
+    ENV.mirageEnabled = Boolean(process.env.MIRAGE_ENABLED);
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
