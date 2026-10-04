@@ -1,5 +1,5 @@
 import { module, test } from 'qunit';
-import { setupTest } from 'ember-qunit';
+import { setupTest } from 'forecast-mailer/tests/helpers';
 import moment from 'moment';
 
 module('Unit | Model | subscription', function (hooks) {

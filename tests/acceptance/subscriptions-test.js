@@ -1,7 +1,7 @@
 import { module, test } from 'qunit';
 import { click, currentURL, fillIn, find, findAll, triggerEvent, visit } from '@ember/test-helpers';
-import { setupApplicationTest } from 'ember-qunit';
-import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
+import { setupApplicationTest } from 'forecast-mailer/tests/helpers';
+import setupMirageForTests from 'forecast-mailer/tests/helpers/setup-mirage';
 
 async function select(selector, value) {
   let select = find(selector);
@@ -28,12 +28,12 @@ async function select(selector, value) {
 
 module('Acceptance | Subscriptions | Index', function (hooks) {
   setupApplicationTest(hooks);
-  setupMirage(hooks);
+  setupMirageForTests(hooks);
 
   test('/ redirects to /subscriptions', async function (assert) {
     await visit('/');
 
-    assert.equal(currentURL(), '/subscriptions', '/ redirected to /subscriptions');
+    assert.strictEqual(currentURL(), '/subscriptions', '/ redirected to /subscriptions');
   });
 
   test('it lists current subscriptions, past subscriptions, and future subscriptions separately', async function (assert) {
@@ -59,7 +59,7 @@ module('Acceptance | Subscriptions | Index', function (hooks) {
 
 module('Acceptance | Subscriptions | New', function (hooks) {
   setupApplicationTest(hooks);
-  setupMirage(hooks);
+  setupMirageForTests(hooks);
 
   test('adding a new subscription', async function (assert) {
     this.server.create('subscription');
@@ -80,7 +80,7 @@ module('Acceptance | Subscriptions | New', function (hooks) {
     await click('button[type=submit]');
 
     assert.ok(savedToServer, 'new subscription saved to server');
-    assert.equal(currentURL(), '/subscriptions', 'redirects back to subscription listing');
+    assert.strictEqual(currentURL(), '/subscriptions', 'redirects back to subscription listing');
     assert.dom('.subscription').exists({ count: 2 }, 'displays the newly-added subscription');
     assert.dom('.success').includesText('Subscription created');
   });
@@ -88,7 +88,7 @@ module('Acceptance | Subscriptions | New', function (hooks) {
 
 module('Acceptance | Subscriptions | Edit', function (hooks) {
   setupApplicationTest(hooks);
-  setupMirage(hooks);
+  setupMirageForTests(hooks);
 
   test('editing a subscription', async function (assert) {
     let subscription = this.server.create('subscription', {
@@ -123,7 +123,7 @@ module('Acceptance | Subscriptions | Edit', function (hooks) {
     await click('button[type=submit]');
 
     assert.ok(savedToServer, 'changes saved back to server');
-    assert.equal(currentURL(), '/subscriptions', 'redirects back to subscription listing');
+    assert.strictEqual(currentURL(), '/subscriptions', 'redirects back to subscription listing');
     assert.dom('.success').includesText('Subscription updated');
     assert.dom('.subscription td:nth-child(1)').hasText('jane.doe@example.org', 'email address was updated');
     assert.dom('.subscription td:nth-child(2)').hasText('Nowheresville', 'location was updated');
@@ -135,7 +135,7 @@ module('Acceptance | Subscriptions | Edit', function (hooks) {
 
 module('Acceptance | Subscriptions | Delete', function (hooks) {
   setupApplicationTest(hooks);
-  setupMirage(hooks);
+  setupMirageForTests(hooks);
 
   test('can remove a subscription', async function (assert) {
     this.server.createList('subscription', 11);
@@ -150,14 +150,14 @@ module('Acceptance | Subscriptions | Delete', function (hooks) {
         subscription.destroy();
         return '';
       },
-      204
+      204,
     );
 
     await visit(`/subscriptions/${subscription.id}`);
     await click('button[data-test-delete-button]');
 
     assert.ok(deletedFromServer, 'made request to server to delete');
-    assert.equal(currentURL(), '/subscriptions', 'redirects back to subscription listing');
+    assert.strictEqual(currentURL(), '/subscriptions', 'redirects back to subscription listing');
     assert.dom('.success').includesText('Subscription deleted');
     assert.dom('.subscription').exists({ count: 11 }, 'deleted subscription is not displayed');
   });

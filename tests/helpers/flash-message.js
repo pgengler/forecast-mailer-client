@@ -1,3 +1,4 @@
 import FlashObject from 'ember-cli-flash/flash/object';
 
-FlashObject.reopen({ init() {} });
+// Disable flash message timers in tests
+FlashObject.isTimeoutDisabled = true;
