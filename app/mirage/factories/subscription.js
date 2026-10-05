@@ -6,7 +6,7 @@ export default Factory.extend({
   location: () => `${faker.location.city()}, ${faker.location.state({ abbreviated: true })}`,
   start: () => faker.date.recent(),
   end: () => faker.date.future(),
-  units: () => faker.helpers.arrayElement(['si', 'us', 'auto']),
+  units: () => faker.helpers.arrayElement(['si', 'us', 'auto', 'both']),
   geocoded: true,
   createdAt: () => faker.date.past(),
   updatedAt: () => faker.date.past(),
